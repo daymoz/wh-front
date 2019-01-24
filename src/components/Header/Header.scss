@@ -1,0 +1,10 @@
+header {
+    position: relative;
+    background: #33373C;
+    & .inside-header {
+        height: 65px;
+        width: 1200px;
+        display: flex;
+        margin: 0 auto;
+    }
+}
