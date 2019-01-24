@@ -7,6 +7,8 @@ import Home from './components/Home/Home';
 import News from './components/News/News';
 import Error404 from './components/Error404/Error404';
 import WebFont from 'webfontloader';
+import './App.scss';
+
 
 WebFont.load({
   google: {

@@ -5,7 +5,12 @@ class AccountNavbar extends Component {
     render() {
       return (
           <div id="account">
+              <div className="user-left">
               
+              </div>
+              <div className="user-right">
+
+              </div>
           </div>
       );
     }

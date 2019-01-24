@@ -3,7 +3,9 @@
     height: 65px;
     margin-right: 35px;
     line-height: 65px;
-
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
     & img {
         width: 45px;
         height: auto;
