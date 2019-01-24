@@ -1,0 +1,21 @@
+// .active {
+//     color: red;
+// }
+.wf-active {
+    nav#main-navbar {
+        height: 65px;
+        display: flex;
+        flex-grow: 1;
+        align-items: stretch;
+        font-size: 18px;
+        & a.item {
+            line-height: 65px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'PT Sans Narrow', sans-serif;
+            font-weight: 700;
+            margin: 0 15px;
+            color: #fff;
+        }
+    }
+}
