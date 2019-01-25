@@ -1,12 +1,13 @@
-header {
-    position: relative;
-    background: #33373C;
-    & .inside-header {
-        height: 65px;
-        width: 1200px;
-        padding: 0 25px;
-        display: flex;
-        margin: 0 auto;
-        align-items: center;
+.header {
+    height: 65px;
+    header {
+        &.inside-header {
+            height: 65px;
+            background-color: #33373C;
+            // padding: 0 25px;
+            // display: flex;
+            // margin: 0 auto;
+            // align-items: center;
+        }
     }
 }

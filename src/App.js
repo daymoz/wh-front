@@ -12,7 +12,7 @@ import './App.scss';
 
 WebFont.load({
   google: {
-    families: ['Open Sans:400','PT Sans Narrow:700', 'sans-serif']
+    families: ['Open Sans:400','Roboto Condensed:300,400,700', 'sans-serif']
   }
 });
 
