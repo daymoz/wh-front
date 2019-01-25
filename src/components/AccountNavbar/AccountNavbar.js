@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import './AccountNavbar.scss';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 class AccountNavbar extends Component {
     render() {
       return (
           <div id="account">
-              <div className="user-avatar">
-              
               <nav id="account-navbar" role="navigation">
-                <button>Se connecter</button>
+                <Button className="menu">Se connecter</Button>
                 <span className="separator">|</span>
-                <button>S'inscrire</button>
+                <Button>S'inscrire</Button>
               </nav>
-              </div>
-              
-
           </div>
       );
     }
