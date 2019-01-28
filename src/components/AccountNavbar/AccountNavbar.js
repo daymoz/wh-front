@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import './AccountNavbar.scss';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 
 class AccountNavbar extends Component {
     render() {
       return (
           <div id="account">
               <nav id="account-navbar" role="navigation">
-                <Button className="menu">Se connecter</Button>
+                <Button className="menu"><NavLink activeClassName="active" className="nav-bar item" to="/user/login">Se connecter</NavLink></Button>
                 <span className="separator">|</span>
                 <Button>S'inscrire</Button>
               </nav>

@@ -47,6 +47,15 @@
             color: #93989F;
             font-size: 18px;
         }
+
+        & a.item {
+            @include headerLinkItems();
+            font-weight: 700;
+
+            &:hover {
+                color: #d9dbdf;
+            }
+        }
     }
 
 }
