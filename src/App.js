@@ -22,13 +22,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-            <main>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/actualites" component={News} />
                 <Route component={Error404} />
               </Switch>
-            </main>
           <Footer />
         </div>
       </Router>
