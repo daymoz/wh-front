@@ -3,7 +3,7 @@
     display: flex;
     position: absolute;
     justify-content: space-around;
-    top: -125px;
+    top: -150px;
 
     & .box {
         
@@ -24,8 +24,8 @@
         & .infos {
             background-color: #fff;
             box-shadow: -1px 4px 74px -16px rgba(0,0,0,.15);
-            width: 300px;
-            min-height: 150px;
+            width: 350px;
+            min-height: 200px;
         }
     }
 
