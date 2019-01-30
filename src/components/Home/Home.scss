@@ -21,4 +21,11 @@ main {
         }
 
     }
+
+    & #main-content {
+        max-width: 1440px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+    }
 }

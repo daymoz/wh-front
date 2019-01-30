@@ -8,9 +8,9 @@ class AccountNavbar extends Component {
       return (
           <div id="account">
               <nav id="account-navbar" role="navigation">
-                <Button className="menu"><NavLink activeClassName="active" className="nav-bar item" to="/user/login">Se connecter</NavLink></Button>
+                <Button className="sign-in"><NavLink activeClassName="active" className="nav-bar item" to="/user/login">Se connecter</NavLink></Button>
                 <span className="separator">|</span>
-                <Button>S'inscrire</Button>
+                <Button className="sign-up"><NavLink activeClassName="active" className="nav-bar item" to="/user/singup">S'inscrire</NavLink></Button>
               </nav>
           </div>
       );
