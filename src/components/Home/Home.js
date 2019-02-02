@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import PageHeadrest from './../PageHeadrest/PageHeadrest';
-import HomeLatest from './../HomeLatest/HomeLatest';
 
 import './Home.scss';
 
@@ -11,8 +10,10 @@ class Home extends Component {
             <main>
                 <PageHeadrest />
                 <section id="main-content">
-                    <HomeLatest />
                     <h1>Main</h1>
+                    <section id="news-part" className="main-left-side">
+                        
+                    </section>
                 </section>
             </main>
         );
