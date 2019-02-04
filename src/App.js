@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Home from './components/Home/Home';
 import News from './components/News/News';
 import Error404 from './components/Error404/Error404';
 import WebFont from 'webfontloader';
+
 import './App.scss';
 
 
