@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import PageHeadrest from './../PageHeadrest/PageHeadrest';
 import NewsBlock from './../NewsBlock/NewsBlock';
+import API from './../../services/API';
 
 import './Home.scss';
 
@@ -17,6 +18,7 @@ class Home extends Component {
                 <PageHeadrest />
                 <section id="main-content">
                     <h1>Main</h1>
+                    <button onClick={API.getArticles()}>Click it</button>
                     <section id="news-part" className="main-left-side">
                         <NewsBlock avatarImg={img1} img={img2} title="LOREM BIDOU BIDOU" />
                         <NewsBlock avatarImg={img3} img={img_3} title="LOREM BIDOU BIDOU et voici la folie des grandeurs maggle tu t'y attends pas mais c'est là" />
