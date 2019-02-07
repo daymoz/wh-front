@@ -5,15 +5,14 @@ const url = 'http://dev.waven-hub.fr:1337';
 
 
 export function getArticles() {
-    axios
-  .get(url+'/articles', {
+    axios.get('http://dev.waven-hub.fr:1337/articles', {
   })
   .then(response => {
     // Handle success.
-    console.log('Well done, here is the list of articles: ', response.data);
+    return response.data;
   })
   .catch(error => {
     // Handle error.
-    console.log('An error occurred:', error);
+    return error;
   });
 }

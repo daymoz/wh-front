@@ -14,7 +14,10 @@ class NewsBlock extends Component {
                     <h3>{this.props.title}</h3>
                 </div>
                 <div className="infos">
-                    <Avatar alt="Remy Sharp" src={this.props.avatarImg} className="avatar" />
+                    <div className="avatar">
+                        <Avatar alt={'Avatar de '+this.props.authorName} src={this.props.avatarImg} className="avatar" />
+                        <p>{this.props.authorName}</p>
+                    </div>
                 </div>
             </article>
         );
