@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
+import axios from 'axios';
 
 import './NewsBlock.scss';
 
 class NewsBlock extends Component {
+
+    constructor(props) {
+        super();
+        this.state = {
+            avatarUrl: null,
+        }
+        this.back_end = 'http://dev.waven-hub.fr:1337';
+        console.log(props);
+    }
+
+    getAvatar() {
+        axios.get(this.back_end+'/users/'+this.props.avatarImg, {
+        })
+        .then(response => { 
+            // Handle success.
+            console.log(response.data);
+            console.log();
+            return response.data.avatar.url;
+        })
+        .catch(error => {
+            // Handle error.
+            return error;
+        });
+    }
 
     render() {
         return (
@@ -15,7 +40,7 @@ class NewsBlock extends Component {
                 </div>
                 <div className="infos">
                     <div className="avatar">
-                        <Avatar alt={'Avatar de '+this.props.authorName} src={this.props.avatarImg} className="avatar" />
+                        <Avatar alt={'Avatar de '+this.props.authorName} src={this.getAvatar()} className="avatar" />
                         <p>{this.props.authorName}</p>
                     </div>
                 </div>
