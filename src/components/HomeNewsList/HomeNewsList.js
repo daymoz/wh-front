@@ -1,45 +1,48 @@
 import React, { Component, Fragment } from 'react';
 
 import NewsBlock from './../NewsBlock/NewsBlock';
+import { getArticles, getGuides, getMaj, getNews } from './../../services/API';
 
 import axios from 'axios';
-
 class HomeNewsList extends Component {
 
     state = {
             news: []
-        }
-    back_end = 'http://dev.waven-hub.fr:1337';
-
-    getAvatarAuthor(authorId) {
-        axios.get(this.back_end+'/users/'+authorId, {
-        })
-        .then(response => {
-            
-            return axios.get(this.back_end+'/users/'`${response.data.author.id}`);
-        }).then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            // Handle error.
-            return error;
-        });
     }
+    back_end = 'http://dev.waven-hub.fr:1337';
+    limit = 6;
 
-
+    // componentDidMount() {
+    //     getArticles()
+    //     .then(response => {
+    //         this.setState({
+    //             news: response.data
+    //         })
+    //     })
+    //     .catch(error => {
+    //         // Handle error.
+    //         return error;
+    //     });
+    // }
     componentDidMount() {
-        axios.get(this.back_end+'/articles', {
-        })
-        .then(response => {
-            
-            return axios.get(this.back_end+'/users/'`${response.data.author.id}`);
-        }).then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            // Handle error.
-            return error;
-        });
+        axios.all([getArticles(this.limit), getGuides(this.limit), getNews(this.limit), getMaj(this.limit)])
+            .then(axios.spread(function(articles, guides, news, majs) {
+                const all_latest = [].concat(...articles.data, ...guides.data, ...news.data, ...majs.data);
+                const all_latest_ordered = all_latest.sort(function(a,b){
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                });
+                return all_latest_ordered;
+                
+            }))
+            .then(response => {
+                this.setState({
+                    news: response,
+                })
+            })
+            .catch(error => {
+                // Handle error.
+                return error;
+            })
     }
 
     
@@ -48,7 +51,9 @@ class HomeNewsList extends Component {
         return (
             <Fragment>
                 { this.state.news.map((item, i) => {
-                    return <NewsBlock key={i} title={item.title} img={this.back_end+item.visual.url} avatarImg={item.author.id} authorName={item.author.username}  />
+                    return <NewsBlock key={i} title={item.title} img={this.back_end+item.visual.url} 
+                        authorId={item.author.id ? item.author.id : null} 
+                        authorName={item.author.username ? item.author.username : null}  />
                 }) }
             </Fragment>
         );

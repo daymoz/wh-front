@@ -4,6 +4,7 @@ import HomeLatest from './../HomeLatest/HomeLatest';
 import './../Home/Home.scss';
 
 class PageHeadrest extends Component {
+    
     render() {
         return (
             <section id="slider-header">
