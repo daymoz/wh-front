@@ -7,6 +7,7 @@ class Logo extends Component {
         return (
             <div className="wvh-logo">
                 <img src={LogoPNG} alt="WavenHub Logo"></img>
+                <div className="site-title">WavenHub</div>
             </div>
         );
     }

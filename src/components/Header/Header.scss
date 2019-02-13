@@ -1,13 +1,25 @@
-.header {
-    height: 65px;
-    header {
-        &.inside-header {
-            height: 65px;
-            background-color: #33373C;
-            // padding: 0 25px;
-            // display: flex;
-            // margin: 0 auto;
-            // align-items: center;
+header {
+
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+
+    & .inside-header {
+        height: 65px;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 10px 25px 0 25px;
+        display: flex;
+        // margin: 0 auto;
+        // align-items: center;
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
         }
+
     }
+
 }

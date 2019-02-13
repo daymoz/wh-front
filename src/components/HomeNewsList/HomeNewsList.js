@@ -4,10 +4,13 @@ import NewsBlock from './../NewsBlock/NewsBlock';
 import { getArticles, getGuides, getMaj, getNews } from './../../services/API';
 
 import axios from 'axios';
+
+import './HomeNewsList.scss';
 class HomeNewsList extends Component {
 
     state = {
-            news: []
+        news: [],
+        isLoading: true,
     }
     back_end = 'http://dev.waven-hub.fr:1337';
     limit = 6;
@@ -37,6 +40,7 @@ class HomeNewsList extends Component {
             .then(response => {
                 this.setState({
                     news: response,
+                    isLoading: false,
                 })
             })
             .catch(error => {
@@ -50,6 +54,7 @@ class HomeNewsList extends Component {
     render() {
         return (
             <Fragment>
+                { this.state.isLoading ? <div className="loading"></div> : '' } 
                 { this.state.news.map((item, i) => {
                     return <NewsBlock key={i} title={item.title} img={this.back_end+item.visual.url} 
                         authorId={item.author.id ? item.author.id : null} 

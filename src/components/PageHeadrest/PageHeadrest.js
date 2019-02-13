@@ -11,7 +11,7 @@ class PageHeadrest extends Component {
                 <div className="image">
                     <img src={FrontImage} alt="Front Home" />
                 </div>
-                <HomeLatest />
+                {/* <HomeLatest /> */}
             </section>
         );
     }
