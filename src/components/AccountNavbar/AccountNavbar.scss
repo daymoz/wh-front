@@ -19,12 +19,11 @@
     & .sign-in {
         border: 1px solid #98dadd !important;
         border-radius: 30px;
+        font-weight: 300 !important;
         transition: background-color 0.1s linear;
         &:hover {
             // background-color: rgb(86,93,101);
-            & a.item {
-                color: #fff;
-            }
+            color: #fff;
         }
 
     }
