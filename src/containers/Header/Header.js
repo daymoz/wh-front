@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../Logo/Logo';
-import MainNavbar from '../MainNavbar/MainNavbar';
-import AccountNavbar from '../AccountNavbar/AccountNavbar';
+import Logo from '../../components/Logo/Logo';
+import MainNavbar from '../../components/MainNavbar/MainNavbar';
+import AccountNavbar from '../../components/AccountNavbar/AccountNavbar';
 
 import './Header.scss';
 
