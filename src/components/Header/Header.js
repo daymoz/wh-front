@@ -17,6 +17,7 @@ class Header extends Component {
                     <MainNavbar />     
                     <AccountNavbar />          
                 </div>
+                
             </header>
         );
     }
