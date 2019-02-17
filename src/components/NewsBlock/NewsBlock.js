@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 
 import './NewsBlock.scss';
+import { Link } from '@material-ui/core';
+import FullPageContent from '../../containers/FullPageContent/FullPageContent';
 
 class NewsBlock extends Component {
 
@@ -30,19 +32,24 @@ class NewsBlock extends Component {
 
     render() {
         return (
-            <article className="article-box">
-                <div className="image">
-                    <img src={this.props.img} alt="hey" />
-                    <h3>{this.props.title}</h3>
-                </div>
-                <div className="infos">
-                    <div className="avatar">
-                        <Avatar alt={'Avatar de '+this.props.authorName} 
-                        src={this.state.avatarImg ? this.back_end+this.state.avatarImg : null} className="avatar" />
-                        <p>{this.props.authorName}</p>
-                    </div>
-                </div>
-            </article>
+            <Fragment>
+                    <article className="article-box">
+                    
+                <a href='/news'>
+                        <div className="image">
+                            <img src={this.props.img} alt="hey" />
+                            <h3>{this.props.title}</h3>
+                        </div>
+                        <div className="infos">
+                            <div className="avatar">
+                                <Avatar alt={'Avatar de '+this.props.authorName} 
+                                src={this.state.avatarImg ? this.back_end+this.state.avatarImg : null} className="avatar" />
+                                <p>{this.props.authorName}</p>
+                            </div>
+                        </div>
+                </a>
+                    </article>
+            </Fragment>
         );
     }
   }

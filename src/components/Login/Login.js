@@ -15,7 +15,7 @@ class Login extends Component {
 
     handleClose = () => {
         this.props.onClose(false);
-      };
+    };
 
     render() {
         return (

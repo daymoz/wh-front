@@ -11,6 +11,7 @@ import Error404 from './components/Error404/Error404';
 import WebFont from 'webfontloader';
 
 import './App.scss';
+import FullPageContent from './containers/FullPageContent/FullPageContent';
 
 
 WebFont.load({
@@ -28,6 +29,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/actualites" component={News} />
+                <Route exact path="/:contentType/:id" component={FullPageContent} />
                 <Route component={Error404} />
               </Switch>
           <Footer />

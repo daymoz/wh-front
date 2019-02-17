@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Avatar } from '@material-ui/core';
-import Login from './../Login/Login';
+import DialogBox from './../../containers/DialogBox/DialogBox';
 
 import './AccountNavbar.scss';
 import defaultAvatar from './../../default_avatar.png';
@@ -11,10 +11,20 @@ class AccountNavbar extends Component {
 
     state = {
       open: false,
+      login: null,
+    };
+
+    loginBox = {
+      title: 'Se connecter'
     };
 
     handleClickOpen = () => {
-      this.setState({ open: true });
+      this.setState({ 
+        open: true,
+        login: this.loginBox
+      });
+      
+      console.log(this.state);
     };
 
     handleClose = (value) => {
@@ -29,7 +39,7 @@ class AccountNavbar extends Component {
                 <Button className="sign-in nav-bar item" onClick={this.handleClickOpen}>Se connecter</Button>
                 <Button className="sign-up"><NavLink activeClassName="active" className="nav-bar item" to="/user/singup">S'inscrire</NavLink></Button>
               </nav>
-              <Login open={this.state.open} onClose={this.handleClose} />
+              <DialogBox open={this.state.open} onClose={this.handleClose} boxContent={this.state.login ? this.state.login : '' } />
           </div>
       );
     }

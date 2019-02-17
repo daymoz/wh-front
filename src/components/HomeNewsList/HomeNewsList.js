@@ -42,6 +42,7 @@ class HomeNewsList extends Component {
                     news: response,
                     isLoading: false,
                 })
+                console.log(this.state.news)
             })
             .catch(error => {
                 // Handle error.
