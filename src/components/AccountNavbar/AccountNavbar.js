@@ -11,20 +11,30 @@ class AccountNavbar extends Component {
 
     state = {
       open: false,
-      login: null,
+      contentToDisplay: null,
+      tabIndex: null,
     };
 
-    loginBox = {
-      title: 'Se connecter'
-    };
-
-    handleClickOpen = () => {
-      this.setState({ 
-        open: true,
-        login: this.loginBox
-      });
-      
-      console.log(this.state);
+    handleClickOpen = (value) => {
+      switch(value) {
+        case 'login':
+          this.setState({ 
+            open: true,
+            contentToDisplay: value,
+            tabIndex: 0,
+          });
+          break;
+        case 'signup':
+          this.setState({ 
+            open: true,
+            contentToDisplay: value,
+            tabIndex: 1,
+          });
+          console.log(this.state);
+          break;
+        default:
+          break;
+      }
     };
 
     handleClose = (value) => {
@@ -36,10 +46,11 @@ class AccountNavbar extends Component {
           <div id="account">
               <nav id="account-navbar" role="navigation">
                 <Avatar alt='Default Avatar' src={defaultAvatar} className="default-avatar"></Avatar>
-                <Button className="sign-in nav-bar item" onClick={this.handleClickOpen}>Se connecter</Button>
-                <Button className="sign-up"><NavLink activeClassName="active" className="nav-bar item" to="/user/singup">S'inscrire</NavLink></Button>
+                <Button className="sign-in nav-bar item" onClick={() => this.handleClickOpen('login')}>Se connecter</Button>
+                <Button className="sign-up nav-bar item" onClick={() => this.handleClickOpen('signup')}>S'inscrire</Button>
               </nav>
-              <DialogBox open={this.state.open} onClose={this.handleClose} boxContent={this.state.login ? this.state.login : '' } />
+
+              <DialogBox open={this.state.open} onClose={this.handleClose} tabIndex={this.state.tabIndex} />
           </div>
       );
     }
