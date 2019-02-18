@@ -12,6 +12,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Lock from '@material-ui/icons/Lock';
 
+import './Auth.scss';
+
 function TabContainer({ children, dir }) {
     return (
       <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
@@ -71,12 +73,6 @@ class Auth extends Component {
         tabIndex: 0,
     }
 
-    handleChange = prop => event => {
-        this.setState({
-            
-        })
-    };
-
     handleChange = (event, tabIndex) => {
         this.setState({ tabIndex });
     };
@@ -84,13 +80,23 @@ class Auth extends Component {
       handleChangeIndex = index => {
         this.setState({ tabIndex: index });
     };
+
+    swipe = (tabIndex) => {
+        if(tabIndex === 1) {
+            this.setState({
+                tabIndex: 0
+            });
+        } else if (tabIndex === 0) {
+            this.setState({
+                tabIndex: 1
+            });
+        }
+    }
     
     componentDidMount() {
-        console.log(this.props);
         this.setState({
             tabIndex: this.props.tabIndex
         });
-        console.log(this.state);
     }
 
 
@@ -116,6 +122,7 @@ class Auth extends Component {
                 name={formElement.config.elementConfig.type}
                 margin="normal"
                 variant="outlined"
+                fullWidth
                 onChange={() => this.handleChange(formElement.config.elementConfig.type)}
                 InputProps={{
                     startAdornment: (
@@ -140,6 +147,9 @@ class Auth extends Component {
                     <Tab label="Se connecter" />
                     <Tab label="S'inscrire" />
                 </Tabs>
+                <div className="head-modal">
+
+                </div>
                 <SwipeableViews
                     axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                     index={this.state.tabIndex}
@@ -149,8 +159,11 @@ class Auth extends Component {
                         <form> 
                             {form}
                         </form>
+                        <p onClick={() => this.swipe(this.state.tabIndex)}>Pas encore inscrit ?</p>
                     </TabContainer>
-                    <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                    <TabContainer dir={theme.direction}>
+                        Item Two
+                    </TabContainer>
                 </SwipeableViews>
             </div>
         );
