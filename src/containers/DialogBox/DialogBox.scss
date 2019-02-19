@@ -1,4 +1,16 @@
 .custom-modal-content {
-    padding: 0 0 24px 0 !important;
+    padding: 0 !important;
+    max-width: 400px;
     // background-color:;
+
+    .top-modal {
+        
+        .wvh-logo {
+            margin: 0;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            .site-title {
+                color: #33373C;
+            }
+        }
+    }
 }

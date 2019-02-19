@@ -4,7 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 
 import './NewsBlock.scss';
-import { Link } from '@material-ui/core';
 import FullPageContent from '../../containers/FullPageContent/FullPageContent';
 
 class NewsBlock extends Component {

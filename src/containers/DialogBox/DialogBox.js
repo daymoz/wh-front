@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+
+import Logo from '../../components/Logo/Logo';
 
 import './DialogBox.scss';
 
@@ -25,6 +25,10 @@ class DialogBox extends Component {
                     className="custom-modal"
                 >
                 <DialogContent className="custom-modal-content">
+
+                    <div className="top-modal">
+                        <Logo onClick={this.handleClose} />
+                    </div>
                     <Auth tabIndex={this.props.tabIndex} />
                 </DialogContent>
                 </Dialog>

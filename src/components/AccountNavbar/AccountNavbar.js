@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Avatar } from '@material-ui/core';
 import DialogBox from './../../containers/DialogBox/DialogBox';
@@ -30,7 +29,6 @@ class AccountNavbar extends Component {
             contentToDisplay: value,
             tabIndex: 1,
           });
-          console.log(this.state);
           break;
         default:
           break;
