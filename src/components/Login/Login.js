@@ -1,56 +1,72 @@
-import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { Component, Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
+import InputAdornment from '@material-ui/core/InputAdornment';
+
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Lock from '@material-ui/icons/Lock';
 class Login extends Component {
 
     state = {
-        open: null,
+        username: {
+            value: '',
+            minLength: 3,
+        },
+        password: {
+            value: '',
+            minLength: 8,
+        },
     }
 
-    handleClose = () => {
-        this.props.onClose(false);
-    };
+    handleChangeFormValue = (name) => (event) => {
+        this.setState({
+            [name]: {
+                value: event.target.value,
+                minLength: this.state[name].minLength,
+            }
+        });
+    }
 
     render() {
         return (
-            <div>
-
-            <Dialog
-                open={this.props.open}
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-                >
-                <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We will send
-                    updates occasionally.
-                    </DialogContentText>
-                    <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
-                    fullWidth
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
-                    Cancel
-                    </Button>
-                    <Button onClick={this.handleClose} color="primary">
-                    Subscribe
-                    </Button>
-                </DialogActions>
-                </Dialog>
-        </div>
+            <Fragment>
+                <TextField
+                    id='login-form-username-input'
+                    label='Ton e-mail ou pseudo'
+                    className=''
+                    type='text'
+                    name='username'
+                    margin="normal"
+                    onChange={this.handleChangeFormValue('username')}
+                    fullWidth  
+                    value={this.state.username.value}
+                    InputProps={{
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <AccountCircle />
+                        </InputAdornment>
+                        ),
+                    }}
+                />
+                <TextField
+                    id='login-form-password-input'
+                    label='Ton mot de passe'
+                    className=''
+                    type='password'
+                    name='password'
+                    margin="normal"
+                    onChange={this.handleChangeFormValue('password')}
+                    fullWidth  
+                    value={this.state.password.value}
+                    InputProps={{
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <Lock />
+                        </InputAdornment>
+                        ),
+                    }}
+                />
+            </Fragment>
         );
     }
   }
