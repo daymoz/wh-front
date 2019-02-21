@@ -1,4 +1,6 @@
 import * as actionTypes from './actionTypes';
+import * as config from './../../config';
+import axios from 'axios';
 
 export const authStart = () => {
     return {
@@ -22,7 +24,17 @@ export const authFail = (error) => {
 
 export const auth = (username, password) => {
     return dispatch => {
-        //.. Auth
+        console.log(username+' '+password);
         dispatch(authStart());
+        axios.post(config.backEndDomain+'/auth/local', {
+            identifier: 'Daymo',
+            password: '(Rk2few4y'
+        }).then(res => {
+            console.log(res.data);
+            dispatch(authSuccess(res.data));
+        }).catch(err => {
+            console.log(err.response.data);
+            dispatch(authFail(err.response.data));
+        })
     };
 }

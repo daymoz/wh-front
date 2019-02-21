@@ -7,24 +7,16 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Lock from '@material-ui/icons/Lock';
 class Login extends Component {
 
-    state = {
-        username: {
-            value: '',
-            minLength: 3,
-        },
-        password: {
-            value: '',
-            minLength: 8,
-        },
+    handleChangeFormLoginValue = (e) => {
+        const inputValues = {
+            name: e.target.name,
+            value: e.target.value
+        };
+        this.props.onChange(inputValues);
     }
 
-    handleChangeFormValue = (name) => (event) => {
-        this.setState({
-            [name]: {
-                value: event.target.value,
-                minLength: this.state[name].minLength,
-            }
-        });
+    componentDidMount() {
+        console.log(this.props.value.username);
     }
 
     render() {
@@ -37,9 +29,9 @@ class Login extends Component {
                     type='text'
                     name='username'
                     margin="normal"
-                    onChange={this.handleChangeFormValue('username')}
-                    fullWidth  
-                    value={this.state.username.value}
+                    onChange={this.handleChangeFormLoginValue}
+                    fullWidth
+                    value={this.props.value.username.value}
                     InputProps={{
                         startAdornment: (
                         <InputAdornment position="start">
@@ -55,9 +47,9 @@ class Login extends Component {
                     type='password'
                     name='password'
                     margin="normal"
-                    onChange={this.handleChangeFormValue('password')}
+                    onChange={this.handleChangeFormLoginValue}
                     fullWidth  
-                    value={this.state.password.value}
+                    value={this.props.value.password.value}
                     InputProps={{
                         startAdornment: (
                         <InputAdornment position="start">

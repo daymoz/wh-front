@@ -1,0 +1,1 @@
+export const backEndDomain = 'http://dev.waven-hub.fr:1337';

@@ -2,20 +2,19 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    authenticated: false,
-    user: {},
+    message: null,
 };
-const authReducer = ( state = initialState, action ) => {
+
+const toastReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'AUTH_SUCCESS':
             return {
                 ...state,
-                isAuthenticated: true,
-                user: action.authData,
+                message: 'Connecté avec succès ! Bienvenue sur Waven HUB',
             }
         default:
             return state;
     }
 }
 
-export default authReducer;
+export default toastReducer;

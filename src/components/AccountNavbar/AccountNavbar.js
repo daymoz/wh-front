@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { Avatar } from '@material-ui/core';
 import DialogBox from './../../containers/DialogBox/DialogBox';
+import { connect } from 'react-redux';
 
 import './AccountNavbar.scss';
 import defaultAvatar from './../../default_avatar.png';
@@ -40,6 +41,8 @@ class AccountNavbar extends Component {
     };
 
     render() {
+      const {isAuthenticated, user} = this.props.auth;
+      console.log(isAuthenticated);
       return (
           <div id="account">
               <nav id="account-navbar" role="navigation">
@@ -53,5 +56,9 @@ class AccountNavbar extends Component {
       );
     }
   }
+
+  const mapStateToProps = (state) => ({
+    auth: state.auth
+})
   
-  export default AccountNavbar;
+  export default connect(mapStateToProps, null)(AccountNavbar);

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import update from 'immutability-helper';
 
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 
@@ -41,22 +40,33 @@ class Auth extends Component {
 
     state = {
         tabIndex: 0,
+        formLoginValues: {
+            username: {
+                value: '',
+            },
+            password: {
+                value: '',
+            }
+        } 
     }
 
-    handleChangeFormValue = (name) => (event) => {
-        console.log(event.target.value);
-        this.setState({
-            ...this.state,
-            [name]: event.target.value
+    handleChangeFormLoginValue = (input) => {
+        let newState = update(this.state, {
+            formLoginValues: {
+                [input.name]: {
+                    value: { $set: input.value }
+                }
+            }
         });
-        console.log();
+        this.setState(newState);
+        console.log(this.state);
     };
 
     handleChange = (event, tabIndex) => {
         this.setState({ tabIndex });
     };
     
-      handleChangeIndex = index => {
+    handleChangeIndex = index => {
         this.setState({ tabIndex: index });
     };
 
@@ -84,7 +94,7 @@ class Auth extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submitted');
+        this.props.onAuth(this.state.formLoginValues.username.value, this.state.formLoginValues.password.value);
     }
     
     componentDidMount() {
@@ -96,17 +106,9 @@ class Auth extends Component {
 
     render() {
 
-        const loginFormElementsArray = [];
         const { theme } = this.props;
 
-        for (let key in this.state.login) {
-            loginFormElementsArray.push({
-                id: key,
-                config: this.state.login[key],
-            })
-        }
-
-        const loginForm = <Login />
+        const loginForm = <Login value={this.state.formLoginValues} onChange={this.handleChangeFormLoginValue} />
         const signupForm = <Signup />
 
         return (
@@ -134,7 +136,7 @@ class Auth extends Component {
                     <TabContainer dir={theme.direction}>
                         <form className="form-box" onSubmit={this.handleSubmit}> 
                             {loginForm}
-                            <Link align="right" component="button" onClick={() => this.swipe('toForgotPassword')} className="forgot-pwd"><p className="p-modal">Tu as oublié ton mot de passe ?</p></Link>
+                            <Link align="right" onClick={() => this.swipe('toForgotPassword')} className="forgot-pwd"><p className="p-modal">Tu as oublié ton mot de passe ?</p></Link>
                             <Button type="submit" variant="text" size="medium" className="modal-box-button">Waveeeen</Button>
                         </form>
                         
@@ -163,9 +165,8 @@ Auth.propTypes = {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth())
+        onAuth: (email, password) => dispatch(actions.auth(email, password))
     };
 }
 //connect(null, mapDispatchToProps)
-export const connectComponent = connect(null, mapDispatchToProps)(Auth);
-export default withStyles(styles, { withTheme: true })(Auth);
+export default connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Auth));

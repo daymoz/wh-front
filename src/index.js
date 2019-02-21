@@ -5,13 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, composer, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducer from './store/reducers/auth';
+import rootReducer from './store/reducers/index';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const initialState = {};
+
+const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 const theme = createMuiTheme({
     palette: {
