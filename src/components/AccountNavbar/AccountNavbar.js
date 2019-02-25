@@ -40,16 +40,31 @@ class AccountNavbar extends Component {
       this.setState({ open: value });
     };
 
+
+
     render() {
-      const {isAuthenticated, user} = this.props.auth;
-      const cookies =
+      const {isAuthenticated, user } = this.props.auth;
+      let buttons = null;
       console.log(isAuthenticated);
+      console.log(user);
+      if(!isAuthenticated) {
+        buttons = <>
+                    <Button className="sign-in nav-bar item" onClick={() => this.handleClickOpen('login')}>Se connecter</Button>
+                    <Button className="sign-up nav-bar item" onClick={() => this.handleClickOpen('signup')}>S'inscrire</Button>
+                  </>;
+      } else {
+        buttons = <>
+                    <Button className="sign-in nav-bar item" onClick={() => this.handleClickOpen('login')}>Hey</Button>
+                    <Button className="sign-up nav-bar item" onClick={() => this.handleClickOpen('logout')}>Se déconnecter</Button>
+                  </>;
+      }
+
       return (
           <div id="account">
               <nav id="account-navbar" role="navigation">
                 <Avatar alt='Default Avatar' src={defaultAvatar} className="default-avatar"></Avatar>
-                <Button className="sign-in nav-bar item" onClick={() => this.handleClickOpen('login')}>Se connecter</Button>
-                <Button className="sign-up nav-bar item" onClick={() => this.handleClickOpen('signup')}>S'inscrire</Button>
+
+                  {buttons}
               </nav>
 
               <DialogBox open={this.state.open} onClose={this.handleClose} tabIndex={this.state.tabIndex} />

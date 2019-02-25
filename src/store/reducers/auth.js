@@ -14,10 +14,11 @@ const authReducer = ( state = initialState, action ) => {
                 user: action.authData,
             };
         case 'AUTHENTICATED':
+        console.log(action);
         return {
             ...state,
             isAuthenticated: true,
-            user: action.authData,
+            user: action.userId,
         }
         default:
             return state;

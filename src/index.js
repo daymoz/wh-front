@@ -6,10 +6,11 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { CookiesProvider } from 'react-cookie';
 
 import * as actions from './store/actions/index';
 import rootReducer from './store/reducers/index';
+import Cookies from 'js-cookie';
+import * as jwtDecode from 'jwt-decode';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -17,10 +18,10 @@ const initialState = {};
 
 const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()));
 
-const jwt = localStorage.getItem('token');
+const jwt = Cookies.get('token');
 
 if(jwt) {
-    store.dispatch(actions.authenticated());
+    store.dispatch(actions.authenticated(jwtDecode(jwt)));
 }
 
 const theme = createMuiTheme({
@@ -40,13 +41,11 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-    <CookiesProvider>
         <Provider store={store}>
             <MuiThemeProvider theme={theme}>
-                <App cookies={this.props.cookies} />
+                <App />
             </MuiThemeProvider>
         </Provider>
-    </CookiesProvider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

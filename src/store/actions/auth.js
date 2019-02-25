@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import * as config from './../../config';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import * as jwtDecode from 'jwt-decode';
 
 export const authStart = () => {
     return {
@@ -22,25 +24,25 @@ export const authFail = (error) => {
     }
 };
 
-export const authenticated = () => {
+export const authenticated = (jwt) => {
     return {
         type: actionTypes.AUTHENTICATED,
+        userId: jwt.id
     }
 }
 
 export const auth = (username, password) => {
     return dispatch => {
-        console.log(username+' '+password);
         dispatch(authStart());
         axios.post(config.backEndDomain+'/auth/local', {
             identifier: username,
             password: password
         }).then(res => {
             console.log(res.data);
-            localStorage.setItem('token', res.data.jwt);
-            localStorage.setItem('user', res.data.user);
+            Cookies.set('token', res.data.jwt);
+            Cookies.set('user', res.data.user);
             dispatch(authSuccess(res.data));
-            dispatch(authenticated());
+            dispatch(authenticated(jwtDecode(res.data.jwt)));
         }).catch(err => {
             console.log(err.response.data);
             dispatch(authFail(err.response.data));
