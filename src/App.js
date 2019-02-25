@@ -10,6 +10,8 @@ import News from './components/News/News';
 import Error404 from './components/Error404/Error404';
 import WebFont from 'webfontloader';
 
+import { withCookies } from 'react-cookie';
+
 import './App.scss';
 import FullPageContent from './containers/FullPageContent/FullPageContent';
 
@@ -39,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);

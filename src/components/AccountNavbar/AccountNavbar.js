@@ -42,6 +42,7 @@ class AccountNavbar extends Component {
 
     render() {
       const {isAuthenticated, user} = this.props.auth;
+      const cookies =
       console.log(isAuthenticated);
       return (
           <div id="account">

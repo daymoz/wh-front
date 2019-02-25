@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { CookiesProvider } from 'react-cookie';
 
 import * as actions from './store/actions/index';
 import rootReducer from './store/reducers/index';
@@ -39,11 +40,13 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-    <Provider store={store}>
-        <MuiThemeProvider theme={theme}>
-            <App />
-        </MuiThemeProvider>
-    </Provider>
+    <CookiesProvider>
+        <Provider store={store}>
+            <MuiThemeProvider theme={theme}>
+                <App cookies={this.props.cookies} />
+            </MuiThemeProvider>
+        </Provider>
+    </CookiesProvider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
