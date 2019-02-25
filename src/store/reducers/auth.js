@@ -12,7 +12,13 @@ const authReducer = ( state = initialState, action ) => {
                 ...state,
                 isAuthenticated: true,
                 user: action.authData,
-            }
+            };
+        case 'AUTHENTICATED':
+        return {
+            ...state,
+            isAuthenticated: true,
+            user: action.authData,
+        }
         default:
             return state;
     }

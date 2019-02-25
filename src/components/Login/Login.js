@@ -33,7 +33,7 @@ class Login extends Component {
                     fullWidth
                     value={this.props.value.username.value}
                     InputProps={{
-                        startAdornment: (
+                        endAdornment: (
                         <InputAdornment position="start">
                             <AccountCircle />
                         </InputAdornment>
@@ -51,7 +51,7 @@ class Login extends Component {
                     fullWidth  
                     value={this.props.value.password.value}
                     InputProps={{
-                        startAdornment: (
+                        endAdornment: (
                         <InputAdornment position="start">
                             <Lock />
                         </InputAdornment>

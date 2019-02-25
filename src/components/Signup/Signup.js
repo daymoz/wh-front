@@ -20,6 +20,9 @@ class Signup extends Component {
             value: '',
             minLength: 8,
         },
+        validPassword: {
+            value: '',
+        }
     }
 
     handleChangeFormValue = (name) => (event) => {
@@ -47,7 +50,7 @@ class Signup extends Component {
                     fullWidth  
                     value={this.state.username.value}
                     InputProps={{
-                        startAdornment: (
+                        endAdornment: (
                         <InputAdornment position="start">
                             <Face />
                         </InputAdornment>
@@ -65,7 +68,7 @@ class Signup extends Component {
                     fullWidth  
                     value={this.state.email.value}
                     InputProps={{
-                        startAdornment: (
+                        endAdornment: (
                         <InputAdornment position="start">
                             <AlternateEmail />
                         </InputAdornment>
@@ -85,7 +88,25 @@ class Signup extends Component {
                     fullWidth  
                     value={this.state.password.value}
                     InputProps={{
-                        startAdornment: (
+                        endAdornment: (
+                        <InputAdornment position="start">
+                            <Lock />
+                        </InputAdornment>
+                        ),
+                    }}
+                />
+                <TextField
+                    id='signup-form-valid-password-input'
+                    label='Répète ton mot de passe'
+                    className=''
+                    type='password'
+                    name='validPassword'
+                    margin="normal"
+                    onChange={this.handleChangeFormValue('password')}
+                    fullWidth  
+                    value={this.state.password.value}
+                    InputProps={{
+                        endAdornment: (
                         <InputAdornment position="start">
                             <Lock />
                         </InputAdornment>

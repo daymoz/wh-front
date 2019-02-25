@@ -1,3 +1,4 @@
 export {
-    auth
+    auth,
+    authenticated
 } from './auth';
