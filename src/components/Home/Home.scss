@@ -2,29 +2,6 @@ main {
 
     background-color: #f8f8f9;
 
-    & #slider-header {
-        height: 400px;
-        position: relative;
-        overflow: hidden;
-
-        & .image {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            
-            & img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: 0 20%;
-            }
-
-        }
-
-    }
-
     & #main-content {
         max-width: 1440px;
         display: block;

@@ -1,25 +1,27 @@
-import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../utility';
-
 const initialState = {
-    authenticated: false,
-    user: {},
+    isAuthenticated: false,
+    userId: null,
+    user: null,
 };
 const authReducer = ( state = initialState, action ) => {
     switch(action.type) {
-        case 'AUTH_SUCCESS':
+        case 'AUTHENTICATED':
             return {
                 ...state,
                 isAuthenticated: true,
-                user: action.authData,
+                userId: action.userId,
             };
-        case 'AUTHENTICATED':
-        console.log(action);
-        return {
-            ...state,
-            isAuthenticated: true,
-            user: action.userId,
-        }
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.user,
+            };
+        case 'LOGOUT':
+            return {
+                ...state,
+                isAuthenticated: false,
+                userId: null,
+            };
         default:
             return state;
     }

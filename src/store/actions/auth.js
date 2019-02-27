@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import * as dialogBoxActions from './dialogBox';
 import * as config from './../../config';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -27,8 +28,38 @@ export const authFail = (error) => {
 export const authenticated = (jwt) => {
     return {
         type: actionTypes.AUTHENTICATED,
-        userId: jwt.id
+        userId: jwt.id,
     }
+}
+
+export const logout = () => {
+    return {
+        type: actionTypes.LOGOUT,
+    }
+}
+
+export const setUser = (user) => {
+    console.log(user);
+    return {
+        type: actionTypes.SET_USER,
+        user: user[0],
+    }
+}
+
+export const getUser = (jwt) => {
+    return dispatch => {
+        let userId = jwtDecode(jwt).id;
+        axios.get(config.backEndDomain+'/users', {
+            params: {
+                _id: userId,
+            }
+        }).then(res => {
+            dispatch(setUser(res.data));
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    };
 }
 
 export const auth = (username, password) => {
@@ -38,11 +69,10 @@ export const auth = (username, password) => {
             identifier: username,
             password: password
         }).then(res => {
-            console.log(res.data);
             Cookies.set('token', res.data.jwt);
-            Cookies.set('user', res.data.user);
-            dispatch(authSuccess(res.data));
-            dispatch(authenticated(jwtDecode(res.data.jwt)));
+            dispatch(authenticated(res.data.jwt));
+            dispatch(getUser(res.data.jwt));
+            dispatch(dialogBoxActions.dialogBoxClose());
         }).catch(err => {
             console.log(err.response.data);
             dispatch(authFail(err.response.data));

@@ -28,6 +28,26 @@
 
     }
 
+    & .logout-button {
+        background: #f44336 !important;
+        border-radius: 0 !important;
+        &:before {
+            content :'';
+            top: 100%;
+            position: absolute;
+            background-color: #f44336 !important;
+            width: 100%;
+            height: calc((65px - 48px)/2);
+        }
+        &:after {
+            content :'';
+            bottom: 100%;
+            position: absolute;
+            background-color: #f44336 !important;
+            width: 100%;
+            height: calc((65px - 48px)/2);
+        }
+    }
     & .sign-up {
         //padding: 10px 4px;
         border-radius: 30px;

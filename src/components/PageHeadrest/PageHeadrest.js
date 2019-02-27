@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import FrontImage from './fronthome.jpg';
-import HomeLatest from './../HomeLatest/HomeLatest';
 import './../Home/Home.scss';
+import Head from './../../assets/header.jpg';
 
 class PageHeadrest extends Component {
     
@@ -9,7 +8,7 @@ class PageHeadrest extends Component {
         return (
             <section id="slider-header">
                 <div className="image">
-                    <img src={FrontImage} alt="Front Home" />
+                    <img src={Head} alt="Front Home" />
                 </div>
                 {/* <HomeLatest /> */}
             </section>

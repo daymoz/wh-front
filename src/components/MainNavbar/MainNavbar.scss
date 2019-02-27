@@ -5,9 +5,11 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     margin: 0 15px;
-    color: #33383F;
+    color: #fff;
+    //color: #33383F;
     transition: color 0.2s;
     letter-spacing: 1px;
+    position: relative;
 }
 
 
@@ -21,8 +23,33 @@
         & a.item {
             @include headerLinkItems();
 
+            &:after {
+                content: '';
+                height: 3px;
+                width: 0;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                background-color: #87F5FD;
+                transition: all 0.2s linear;
+            }
+            &:before {
+                content: '';
+                background-color: #87F5FD;
+                width: 0;
+                height: 3px;
+                position: absolute;
+                bottom: 0;
+                right: 50%;
+                transition: all 0.2s linear;
+            }
+
             &:hover {
                 color: #fff;
+                &:after,
+                &:before {
+                    width: 50%;
+                }
             }
         }
     }
@@ -42,6 +69,7 @@
 
             &:hover {
                 color: #fff;
+                
             }
         }
 

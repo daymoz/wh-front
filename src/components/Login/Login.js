@@ -16,7 +16,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.value.username);
+        //console.log(this.props.value.username);
     }
 
     render() {

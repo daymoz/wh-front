@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import MainNavbar from '../../components/MainNavbar/MainNavbar';
-import AccountNavbar from '../../components/AccountNavbar/AccountNavbar';
+import AccountNavbar from '../AccountNavbar/AccountNavbar';
+import PageHeadrest from './../../components/PageHeadrest/PageHeadrest';
 
 import './Header.scss';
 
@@ -17,7 +18,9 @@ class Header extends Component {
                     <MainNavbar />     
                     <AccountNavbar />          
                 </div>
-                
+                <section id="headrest">
+                    <PageHeadrest />
+                </section>
             </header>
         );
     }

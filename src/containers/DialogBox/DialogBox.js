@@ -2,12 +2,15 @@ import React, { Component, Fragment } from 'react';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
+import { connect } from 'react-redux';
 
 import Logo from '../../components/Logo/Logo';
 
 import './DialogBox.scss';
 
 import Auth from './../Auth/Auth';
+
+import * as actions from '../../store/actions/index';
 
 class DialogBox extends Component {
 
@@ -16,6 +19,7 @@ class DialogBox extends Component {
     };
 
     render() {
+
         return (
             <Fragment>
                 <Dialog
@@ -36,5 +40,11 @@ class DialogBox extends Component {
         );
     }
   }
+
+  const mapDispatchToProps = dispatch => {
+    return {
+        closeDialogBox: () => dispatch(actions.dialogBoxClose()),
+    };
+}
   
-  export default DialogBox;
+  export default connect(mapDispatchToProps)(DialogBox);

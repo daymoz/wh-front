@@ -19,9 +19,9 @@ const initialState = {};
 const store = createStore(rootReducer, initialState, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 const jwt = Cookies.get('token');
-
 if(jwt) {
     store.dispatch(actions.authenticated(jwtDecode(jwt)));
+    store.dispatch(actions.getUser(jwt));
 }
 
 const theme = createMuiTheme({

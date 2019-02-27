@@ -3,8 +3,14 @@ import React, { Component, Fragment } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 
+import Badge from '@material-ui/core/Badge';
+import ChatBubble from '@material-ui/icons/ChatBubble';
+
+import * as moment from 'moment';
+
 import './NewsBlock.scss';
-import FullPageContent from '../../containers/FullPageContent/FullPageContent';
+
+import defaultAvatar from './../../assets/default_avatar.png';
 
 class NewsBlock extends Component {
 
@@ -29,24 +35,41 @@ class NewsBlock extends Component {
         }
     }
 
+    handleClick = () => {
+
+    }
+
     render() {
+
+        let hasComments = null;
+        this.props.commentsNumber > 0 ? hasComments = true : hasComments = false;
+
         return (
             <Fragment>
-                    <article className="article-box">
+                    <article className="article-box" onClick={this.handleClick}>
                     
-                <a href='/news'>
                         <div className="image">
-                            <img src={this.props.img} alt="hey" />
-                            <h3>{this.props.title}</h3>
-                        </div>
-                        <div className="infos">
-                            <div className="avatar">
-                                <Avatar alt={'Avatar de '+this.props.authorName} 
-                                src={this.state.avatarImg ? this.back_end+this.state.avatarImg : null} className="avatar" />
-                                <p>{this.props.authorName}</p>
+                            <div className="news-infos">
+                                <div className="author-infos">
+                                    <Avatar alt={'Avatar de '+this.props.authorName} 
+                                    src={this.state.avatarImg ? this.back_end+this.state.avatarImg : defaultAvatar} className="avatar" />
+                                    <p>{this.props.authorName}</p>
+                                </div>
+                                
+                                {hasComments ? 
+                                    <div className="comments">
+                                        <Badge badgeContent={this.props.commentsNumber} color="primary">
+                                            <ChatBubble className="comment-icon" />
+                                        </Badge>
+                                    </div>
+                                    :
+                                    ''
+                                }
                             </div>
+                            
+                            <img src={this.props.img} alt="hey" />
+                            <h3>{this.props.title} {moment(this.props.date).fromNow()}</h3>
                         </div>
-                </a>
                     </article>
             </Fragment>
         );

@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './containers/Header/Header';
 import Footer from './containers/Footer/Footer';
+import Main from './containers/Main/Main';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import Home from './components/Home/Home';
-import News from './components/News/News';
-import Error404 from './components/Error404/Error404';
 import WebFont from 'webfontloader';
 
 import { withCookies } from 'react-cookie';
 
 import './App.scss';
-import FullPageContent from './containers/FullPageContent/FullPageContent';
 
 
 WebFont.load({
@@ -28,12 +25,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/actualites" component={News} />
-                <Route exact path="/:contentType/:id" component={FullPageContent} />
-                <Route component={Error404} />
-              </Switch>
+          <Main />
           <Footer />
         </div>
       </Router>

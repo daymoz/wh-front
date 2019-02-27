@@ -59,7 +59,6 @@ class Auth extends Component {
             }
         });
         this.setState(newState);
-        console.log(this.state);
     };
 
     handleChange = (event, tabIndex) => {
