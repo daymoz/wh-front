@@ -11,11 +11,13 @@ class Main extends Component {
     render() {
         return (
             <main id="main-content">
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/actualites" component={News} />
-                    <Route component={Error404} />
-                </Switch>
+                <section id="content">
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/actualites" component={News} />
+                        <Route component={Error404} />
+                    </Switch>
+                </section>
             </main>
         );
     }
