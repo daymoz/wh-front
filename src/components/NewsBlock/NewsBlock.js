@@ -41,13 +41,19 @@ class NewsBlock extends Component {
 
     }
 
+    const
+
     render() {
 
+
+
         let hasComments = null;
+        let dynamicClass = '';
+        this.props.index ? dynamicClass = "index"+this.props.index : dynamicClass = "";
         this.props.commentsNumber > 0 ? hasComments = true : hasComments = false;
         return (
             <Fragment>
-                    <article className="article-box" onClick={this.handleClick}>
+                    <article className={"article-box "+this.props.type+" index"+this.props.index} onClick={this.handleClick}>
                     
                         <div className="box">
                             <img src={this.props.img} alt="hey" />

@@ -57,7 +57,7 @@ class NewsBlockList extends Component {
                 
                 const all_latest = [].concat(...articles.data, ...guides.data, ...news.data, ...majs.data);
                 const all_latest_ordered = all_latest.sort(function(a,b){
-                    return new Date(b.modifiedAt) - new Date(a.modifiedAt);
+                    return new Date(b.createdAt) - new Date(a.createdAt);
                 });
                 console.log(all_latest_ordered);
                 return all_latest_ordered;
@@ -84,6 +84,7 @@ class NewsBlockList extends Component {
                 { this.state.isLoading ? <div className="loading"></div> : '' } 
                 { this.state.news.map((item, i) => {
                     return <NewsBlock key={i} 
+                        index={i}
                         title={item.title} 
                         img={config.backEndDomain+item.visual.url} 
                         authorId={item.author.id ? item.author.id : null} 
