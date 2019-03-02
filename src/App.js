@@ -8,6 +8,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import WebFont from 'webfontloader';
 
+import * as moment from 'moment';
+import localization from 'moment/locale/fr';
+
 import { withCookies } from 'react-cookie';
 
 import './App.scss';
@@ -18,6 +21,8 @@ WebFont.load({
     families: ['Open Sans:400','Roboto Condensed:300,400,700', 'sans-serif']
   }
 });
+
+moment.locale('fr', localization);
 
 class App extends Component {
   render() {

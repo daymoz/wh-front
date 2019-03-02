@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import Badge from '@material-ui/core/Badge';
 import ChatBubble from '@material-ui/icons/ChatBubble';
+import CalendarToday from '@material-ui/icons/CalendarToday';
+
 
 import * as moment from 'moment';
 
@@ -39,36 +41,47 @@ class NewsBlock extends Component {
 
     }
 
+    const
+
     render() {
 
-        let hasComments = null;
-        this.props.commentsNumber > 0 ? hasComments = true : hasComments = false;
 
+
+        let hasComments = null;
+        let dynamicClass = '';
+        this.props.index ? dynamicClass = "index"+this.props.index : dynamicClass = "";
+        this.props.commentsNumber > 0 ? hasComments = true : hasComments = false;
         return (
             <Fragment>
-                    <article className="article-box" onClick={this.handleClick}>
+                    <article className={"article-box "+this.props.type+" index"+this.props.index} onClick={this.handleClick}>
                     
-                        <div className="image">
-                            <div className="news-infos">
-                                <div className="author-infos">
-                                    <Avatar alt={'Avatar de '+this.props.authorName} 
-                                    src={this.state.avatarImg ? this.back_end+this.state.avatarImg : defaultAvatar} className="avatar" />
-                                    <p>{this.props.authorName}</p>
-                                </div>
-                                
-                                {hasComments ? 
-                                    <div className="comments">
-                                        <Badge badgeContent={this.props.commentsNumber} color="primary">
-                                            <ChatBubble className="comment-icon" />
-                                        </Badge>
-                                    </div>
-                                    :
-                                    ''
-                                }
-                            </div>
-                            
+                        <div className="box">
                             <img src={this.props.img} alt="hey" />
-                            <h3>{this.props.title} {moment(this.props.date).format('LL')}</h3>
+                            <div className="news-type">{this.props.type}</div>
+                            <div className="sub-infos">
+                                <h3>{this.props.title}</h3>
+                                <div className="publication-date">
+                                    <CalendarToday className="publication-date-icon" />
+                                    <p>{moment(this.props.date).format('LL')}</p>
+                                    <div className="news-infos">
+                                    <div className="author-infos">
+                                        <Avatar alt={'Avatar de '+this.props.authorName} 
+                                        src={this.state.avatarImg ? this.back_end+this.state.avatarImg : defaultAvatar} className="avatar" />
+                                        <p>{this.props.authorName}</p>
+                                    </div>
+                                
+                                    {hasComments ? 
+                                        <div className="comments">
+                                            <Badge badgeContent={this.props.commentsNumber} color="primary" className="comment-badge">
+                                                <ChatBubble className="comment-icon" />
+                                            </Badge>
+                                        </div>
+                                        :
+                                        ''
+                                    }
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                     </article>
             </Fragment>
