@@ -68,7 +68,7 @@ class NewsBlock extends Component {
                             </div>
                             
                             <img src={this.props.img} alt="hey" />
-                            <h3>{this.props.title} {moment(this.props.date).fromNow()}</h3>
+                            <h3>{this.props.title} {moment(this.props.date).format('LL')}</h3>
                         </div>
                     </article>
             </Fragment>
