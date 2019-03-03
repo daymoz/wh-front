@@ -17,6 +17,7 @@ class DialogBox extends Component {
     handleClose = () => {
         this.props.onClose(false);
     };
+    
 
     render() {
 

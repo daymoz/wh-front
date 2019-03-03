@@ -28,31 +28,32 @@ class NewsBlockList extends Component {
     //     });
     // }
 
-    setTypeToContent = (arr, type) => {
-        arr.map((item, i) => {
-            item['type'] = type;
-        });
-        return arr;
-    }
+    // setTypeToContent = (arr, type) => {
+    //     arr.map((item, i) => {
+    //         item['type'] = type;
+    //     });
+    //     return arr;
+    // }
 
     componentDidMount() {
         axios.all([getArticles(this.limit), getGuides(this.limit), getNews(this.limit), getMaj(this.limit)])
             .then(axios.spread(function(articles, guides, news, majs) {
 
                 articles.data.map((item, i) => {
-                    item['type'] = 'article';
+                    return item['type'] = 'article';
                 });
 
+
                 guides.data.map((item, i) => {
-                    item['type'] = 'guide';
+                   return item['type'] = 'guide';
                 });
 
                 news.data.map((item, i) => {
-                    item['type'] = 'news';
+                    return item['type'] = 'news';
                 });
 
                 majs.data.map((item, i) => {
-                    item['type'] = 'maj';
+                    return item['type'] = 'maj';
                 });
                 
                 const all_latest = [].concat(...articles.data, ...guides.data, ...news.data, ...majs.data);

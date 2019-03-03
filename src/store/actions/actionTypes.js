@@ -1,3 +1,4 @@
+//AUTHENTICATION
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
@@ -8,6 +9,19 @@ export const SET_USER = 'SET_USER';
 
 export const LOGOUT = 'LOGOUT';
 
-
+//DIALOG BOX
 export const DIALOG_BOX_CLOSE = 'DIALOG_BOX_CLOSE';
 export const DIALOG_BOX_OPEN = 'DIALOG_BOX_OPEN';
+export const DIALOG_BOX_SET_TO_LOGIN = 'DIALOG_BOX_SET_TO_LOGIN';
+export const DIALOG_BOX_SET_TO_SIGNUP = 'DIALOG_BOX_SET_TO_SIGNUP';
+export const DIALOG_BOX_SET_TO_FP = 'DIALOG_BOX_SET_TO_FP';
+
+//SIGN UP
+export const SIGNUP_START = 'SIGNUP_START';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAIL = 'SIGNUP_FAIL';
+
+//TOASTER
+export const TOAST_IT = 'TOAST_IT';
+export const TOAST_CLOSE = 'TOAST_CLOSE';
+export const TOAST_OPEN = 'TOAST_OPEN';

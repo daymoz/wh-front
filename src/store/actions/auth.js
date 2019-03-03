@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import * as dialogBoxActions from './dialogBox';
+import * as toasterActions from './toaster';
 import * as config from './../../config';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -73,6 +74,7 @@ export const auth = (username, password) => {
             dispatch(authenticated(res.data.jwt));
             dispatch(getUser(res.data.jwt));
             dispatch(dialogBoxActions.dialogBoxClose());
+            dispatch(toasterActions.toastIt('success', 'Vous êtes connecté ! Bienvenue :)'));
         }).catch(err => {
             console.log(err.response.data);
             dispatch(authFail(err.response.data));

@@ -7,4 +7,15 @@ export {
 export {
     dialogBoxOpen,
     dialogBoxClose,
+    dialogBoxSetToLogin,
+    dialogBoxSetToSignUp,
+    dialogBoxSetToFP,
 } from './dialogBox';
+export {
+    signUp
+} from './signUp';
+export {
+    toastIt,
+    openToast,
+    closeToast
+} from './toaster';

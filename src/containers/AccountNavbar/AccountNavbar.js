@@ -6,13 +6,13 @@ import IconButton from '@material-ui/core/IconButton';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
-import axios from 'axios';
+
 import * as config from './../../config';
 import AccountBox from './../../components/AccountBox/AccountBox';
 
 import './AccountNavbar.scss';
 
-import * as actions from '../../store/actions/index';
+import * as actions from '../../store/actions';
 class AccountNavbar extends Component {
 
     state = {
@@ -28,15 +28,15 @@ class AccountNavbar extends Component {
         case 'login':
           this.setState({ 
             contentToDisplay: value,
-            tabIndex: 0,
           });
+          this.props.dialogBoxSetToLogin();
           this.props.openDialogBox();
           break;
         case 'signup':
           this.setState({ 
             contentToDisplay: value,
-            tabIndex: 1,
           });
+          this.props.dialogBoxSetToSignUp();
           this.props.openDialogBox();
           break;
         case 'logout':
@@ -46,6 +46,7 @@ class AccountNavbar extends Component {
             currentUser: null,
           });
           this.props.logout();
+          this.props.toastIt('', 'Vous vous êtes déconnecté. A bientôt !');
           break;
         default:
           break;
@@ -69,6 +70,7 @@ class AccountNavbar extends Component {
       let buttons = null;
       const { isAuthenticated, user } = this.props.auth;
       const dialogBoxStatus = this.props.dialogBox;
+      console.log(dialogBoxStatus);
       if(!isAuthenticated) {
         buttons = <>
                     <Button className="sign-in nav-bar item" onClick={() => this.handleClickOpen('login')}>Se connecter</Button>
@@ -91,7 +93,7 @@ class AccountNavbar extends Component {
                   {buttons}
               </nav>
 
-              <DialogBox open={dialogBoxStatus.open} onClose={this.handleClose} tabIndex={this.state.tabIndex} />
+              <DialogBox open={dialogBoxStatus.open} onClose={this.handleClose} tabIndex={dialogBoxStatus.tabIndex} />
           </div>
       );
     }
@@ -102,6 +104,10 @@ const mapDispatchToProps = dispatch => {
         logout: () => dispatch(actions.logout()),
         openDialogBox: () => dispatch(actions.dialogBoxOpen()),
         closeDialogBox: () => dispatch(actions.dialogBoxClose()),
+        dialogBoxSetToLogin: () => dispatch(actions.dialogBoxSetToLogin()),
+        dialogBoxSetToSignUp: () => dispatch(actions.dialogBoxSetToSignUp()),
+        dialogBoxSetToFP: () => dispatch(actions.dialogBoxSetToFP()),
+        toastIt: (type, message) => dispatch(actions.toastIt(type, message)),
     };
 }
 

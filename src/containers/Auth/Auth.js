@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
 import update from 'immutability-helper';
 
 import PropTypes from 'prop-types';
@@ -47,12 +48,41 @@ class Auth extends Component {
             password: {
                 value: '',
             }
-        } 
+        },
+        formSignUpValues: {
+            username: {
+                value: '',
+            },
+            email : {
+                value: '',
+            },
+            password: {
+                value: '',
+            },
+            confirmPassword: {
+                value: '',
+            }
+        },
+        error: {
+            message: null,
+        }
+
     }
 
     handleChangeFormLoginValue = (input) => {
         let newState = update(this.state, {
             formLoginValues: {
+                [input.name]: {
+                    value: { $set: input.value }
+                }
+            }
+        });
+        this.setState(newState);
+    };
+
+    handleChangeFormSignUpValue = (input) => {
+        let newState = update(this.state, {
+            formSignUpValues: {
                 [input.name]: {
                     value: { $set: input.value }
                 }
@@ -93,7 +123,30 @@ class Auth extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.onAuth(this.state.formLoginValues.username.value, this.state.formLoginValues.password.value);
+        console.log(e.currentTarget.id);
+        if(e.currentTarget.id === 'loginForm') {
+            this.props.onAuth(this.state.formLoginValues.username.value, this.state.formLoginValues.password.value);
+        }
+        else if (e.currentTarget.id === 'signUpForm') {
+            if(this.state.formSignUpValues.password.value === this.state.formSignUpValues.confirmPassword.value) {
+                this.props.signUp(this.state.formSignUpValues.username.value,  this.state.formSignUpValues.email.value, this.state.formSignUpValues.password.value);
+            } else {
+                let newState = update(this.state, {
+                    error: {
+                        message: { $set: 'Vos mots de passes ne sont pas identiques' }
+                    }
+                });
+                this.setState(newState);
+            }
+        }
+        
+    }
+
+    discordConnect = () => {
+        return <Redirect to={{
+            pathname: 'connect/discord',
+            }}
+        />
     }
     
     componentDidMount() {
@@ -108,7 +161,7 @@ class Auth extends Component {
         const { theme } = this.props;
 
         const loginForm = <Login value={this.state.formLoginValues} onChange={this.handleChangeFormLoginValue} />
-        const signupForm = <Signup />
+        const signupForm = <Signup value={this.state.formSignUpValues} onChange={this.handleChangeFormSignUpValue} />
 
         return (
             <div>
@@ -133,17 +186,19 @@ class Auth extends Component {
                     onChangeIndex={this.handleChangeIndex}
                 >
                     <TabContainer dir={theme.direction}>
-                        <form className="form-box" onSubmit={this.handleSubmit}> 
+                        <form className="form-box" id="loginForm" onSubmit={this.handleSubmit}> 
                             {loginForm}
                             <Link align="right" onClick={() => this.swipe('toForgotPassword')} className="forgot-pwd"><p className="p-modal">Tu as oublié ton mot de passe ?</p></Link>
                             <Button type="submit" variant="text" size="medium" className="modal-box-button">Waveeeen</Button>
                         </form>
                         
+                        <Button variant="text" size="medium" className="modal-box-button" onClick={this.discordConnect}>Discord</Button>
                         <Link onClick={() => this.swipe('toSignup')} className="no-account-link"><p className="p-modal">Pas encore inscrit ?</p></Link>
                     </TabContainer>
                     <TabContainer dir={theme.direction}>
-                        <form className="form-box">
+                        <form className="form-box" id="signUpForm" onSubmit={this.handleSubmit}>
                             {signupForm}
+                            <p>{this.state.error.message ? this.state.error.message : ''}</p>
                             <Button type="submit" variant="text" size="medium" className="modal-box-button">Rejoindre</Button>
                         </form>
                         <Link onClick={() => this.swipe('toLogin')} className="no-account-link"><p className="p-modal">Déjà un compte ?</p></Link>
@@ -164,7 +219,9 @@ Auth.propTypes = {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password) => dispatch(actions.auth(email, password)),
+        signUp: (username, email, password) => dispatch(actions.signUp(username, email, password)),
+        toastIt: (type, message) => dispatch(actions.toastIt(type, message)),
     };
 }
 //connect(null, mapDispatchToProps)

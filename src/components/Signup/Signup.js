@@ -25,6 +25,14 @@ class Signup extends Component {
         }
     }
 
+    handleChangeFormSignUpValue = (e) => {
+        const inputValues = {
+            name: e.target.name,
+            value: e.target.value
+        };
+        this.props.onChange(inputValues);
+    }
+
     handleChangeFormValue = (name) => (event) => {
         this.setState({
             [name]: {
@@ -45,10 +53,10 @@ class Signup extends Component {
                     name='username'
                     margin="normal"
                     helperText={this.state.username.value.length < this.state.username.minLength ? this.state.username.minLength +" caractères minimum" : ''}
-                    onChange={this.handleChangeFormValue('username')}
-                    error={this.state.username.value.length < this.state.username.minLength ? true : false }
+                    onChange={this.handleChangeFormSignUpValue}
+                    error={this.props.value.username.value.length < this.state.username.minLength ? true : false }
                     fullWidth  
-                    value={this.state.username.value}
+                    value={this.props.value.username.value}
                     InputProps={{
                         endAdornment: (
                         <InputAdornment position="start">
@@ -64,9 +72,9 @@ class Signup extends Component {
                     type='email'
                     name='email'
                     margin="normal"
-                    onChange={this.handleChangeFormValue('password')}
+                    onChange={this.handleChangeFormSignUpValue}
                     fullWidth  
-                    value={this.state.email.value}
+                    value={this.props.value.email.value}
                     InputProps={{
                         endAdornment: (
                         <InputAdornment position="start">
@@ -83,10 +91,10 @@ class Signup extends Component {
                     name='password'
                     margin="normal"
                     helperText={this.state.password.value.length < this.state.password.minLength ? this.state.password.minLength +" caractères minimum" : ''}
-                    onChange={this.handleChangeFormValue('password')}
-                    error={this.state.password.value.length < this.state.password.minLength ? true : false }
+                    onChange={this.handleChangeFormSignUpValue}
+                    error={this.props.value.password.value.length < this.state.password.minLength ? true : false }
                     fullWidth  
-                    value={this.state.password.value}
+                    value={this.props.value.password.value}
                     InputProps={{
                         endAdornment: (
                         <InputAdornment position="start">
@@ -97,14 +105,14 @@ class Signup extends Component {
                 />
                 <TextField
                     id='signup-form-valid-password-input'
-                    label='Répète ton mot de passe'
+                    label='Confirme ton mot de passe'
                     className=''
                     type='password'
-                    name='validPassword'
+                    name='confirmPassword'
                     margin="normal"
-                    onChange={this.handleChangeFormValue('password')}
+                    onChange={this.handleChangeFormSignUpValue}
                     fullWidth  
-                    value={this.state.password.value}
+                    value={this.props.value.confirmPassword.value}
                     InputProps={{
                         endAdornment: (
                         <InputAdornment position="start">

@@ -11,3 +11,21 @@ export const dialogBoxOpen = () => {
         type: actionTypes.DIALOG_BOX_OPEN,
     }
 };
+
+export const dialogBoxSetToLogin = () => {
+    return {
+        type: actionTypes.DIALOG_BOX_SET_TO_LOGIN,
+    }
+};
+
+export const dialogBoxSetToSignUp = () => {
+    return {
+        type: actionTypes.DIALOG_BOX_SET_TO_SIGNUP,
+    }
+};
+
+export const dialogBoxSetToFP = () => {
+    return {
+        type: actionTypes.DIALOG_BOX_SET_TO_FP,
+    }
+};

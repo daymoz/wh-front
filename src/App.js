@@ -22,7 +22,7 @@ WebFont.load({
   }
 });
 
-moment.locale('fr', localization);
+moment.updateLocale('fr', localization);
 
 class App extends Component {
   render() {
