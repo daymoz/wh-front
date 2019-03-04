@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Switch, Route } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 import Home from './../../components/Home/Home';
 import News from './../../components/News/News';

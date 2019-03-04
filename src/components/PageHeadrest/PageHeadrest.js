@@ -8,7 +8,7 @@ class PageHeadrest extends Component {
         return (
             <section id="slider-header">
                 <div className="image">
-                    <img src={Head} alt="Front Home" />
+                    <img src={this.props.src} alt="Front Home" />
                 </div>
                 {/* <HomeLatest /> */}
             </section>

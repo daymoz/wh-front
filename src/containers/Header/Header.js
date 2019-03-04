@@ -9,7 +9,7 @@ import axios from 'axios';
 import * as config from './../../config';
 
 import { withRouter } from 'react-router-dom';
-
+import Head from './../../assets/header.jpg';
 import './Header.scss';
 
 class Header extends Component {
@@ -22,7 +22,9 @@ class Header extends Component {
         const splitted = window.location.href.split('/');
         const type = splitted[3];
         const contentId = splitted[4];
-        axios
+        console.log('hey');
+        if(type && contentId) {
+            axios
             .get(config.backEndDomain+'/'+type+'/'+contentId)
             .then(response => {
                 this.setState({
@@ -33,6 +35,9 @@ class Header extends Component {
                 // Handle error.
                 return error;
             });
+            console.log(this.state);
+        }
+        
     }
 
     // componentDidUpdate() {
@@ -65,11 +70,11 @@ class Header extends Component {
                     <AccountNavbar />          
                 </div>
                 <section id="headrest">
-                    <PageHeadrest src={this.state.headrestUrl} />
+                    <PageHeadrest src={this.state.headrestUrl ? this.state.headrestUrl : Head} />
                 </section>
             </header>
         );
     }
   }
   
-  export default withRouter(Header);
+  export default Header;
