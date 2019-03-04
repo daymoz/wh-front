@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import update from 'immutability-helper';
 
 import PropTypes from 'prop-types';
@@ -92,29 +92,23 @@ class Auth extends Component {
     };
 
     handleChange = (event, tabIndex) => {
-        this.setState({ tabIndex });
+        this.props.dialogBoxSetIndex(tabIndex);
     };
     
     handleChangeIndex = index => {
-        this.setState({ tabIndex: index });
+        this.props.dialogBoxSetIndex(index);
     };
 
     swipe = (swipeTo) => {
         switch(swipeTo) {
             case 'toLogin':
-                this.setState({
-                    tabIndex: 0
-                });
+                this.props.dialogBoxSetToLogin();
                 break;
             case 'toSignup':
-                this.setState({
-                    tabIndex: 1
-                });
+                this.props.dialogBoxSetToSignUp();
                 break;
             case 'toForgotPassword':
-                this.setState({
-                    tabIndex: 2
-                });
+                this.props.dialogBoxSetToFP();
                 break;
             default:
                 break;
@@ -159,7 +153,7 @@ class Auth extends Component {
     render() {
 
         const { theme } = this.props;
-
+        const dialogBoxStatus = this.props.dialogBox;
         const loginForm = <Login value={this.state.formLoginValues} onChange={this.handleChangeFormLoginValue} />
         const signupForm = <Signup value={this.state.formSignUpValues} onChange={this.handleChangeFormSignUpValue} />
 
@@ -168,7 +162,7 @@ class Auth extends Component {
                 <div className="head-modal">
                     <Tabs
                         className="login-box-tab"
-                        value={this.state.tabIndex}
+                        value={dialogBoxStatus.tabIndex}
                         onChange={this.handleChange}
                         indicatorColor="secondary"
                         textColor="primary"
@@ -182,7 +176,7 @@ class Auth extends Component {
                 
                 <SwipeableViews
                     axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                    index={this.state.tabIndex}
+                    index={dialogBoxStatus.tabIndex}
                     onChangeIndex={this.handleChangeIndex}
                 >
                     <TabContainer dir={theme.direction}>
@@ -222,7 +216,16 @@ const mapDispatchToProps = dispatch => {
         onAuth: (email, password) => dispatch(actions.auth(email, password)),
         signUp: (username, email, password) => dispatch(actions.signUp(username, email, password)),
         toastIt: (type, message) => dispatch(actions.toastIt(type, message)),
+        dialogBoxSetToLogin: () => dispatch(actions.dialogBoxSetToLogin()),
+        dialogBoxSetToSignUp: () => dispatch(actions.dialogBoxSetToSignUp()),
+        dialogBoxSetToFP: () => dispatch(actions.dialogBoxSetToFP()),
+        dialogBoxSetIndex: (index) => dispatch(actions.dialogBoxSetIndex(index)),
     };
 }
-//connect(null, mapDispatchToProps)
-export default connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Auth));
+
+const mapStateToProps = (state) => ({
+    dialogBox: state.dialogBox
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Auth));

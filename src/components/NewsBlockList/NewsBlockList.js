@@ -40,27 +40,26 @@ class NewsBlockList extends Component {
             .then(axios.spread(function(articles, guides, news, majs) {
 
                 articles.data.map((item, i) => {
-                    return item['type'] = 'article';
+                    return item['type'] = 'articles';
                 });
 
 
                 guides.data.map((item, i) => {
-                   return item['type'] = 'guide';
+                   return item['type'] = 'guides';
                 });
 
                 news.data.map((item, i) => {
-                    return item['type'] = 'news';
+                    return item['type'] = 'actualites';
                 });
 
                 majs.data.map((item, i) => {
-                    return item['type'] = 'maj';
+                    return item['type'] = 'majs';
                 });
                 
                 const all_latest = [].concat(...articles.data, ...guides.data, ...news.data, ...majs.data);
                 const all_latest_ordered = all_latest.sort(function(a,b){
                     return new Date(b.createdAt) - new Date(a.createdAt);
                 });
-                console.log(all_latest_ordered);
                 return all_latest_ordered;
                 
             }))
@@ -86,6 +85,7 @@ class NewsBlockList extends Component {
                 { this.state.news.map((item, i) => {
                     return <NewsBlock key={i} 
                         index={i}
+                        id={item.id}
                         title={item.title} 
                         img={config.backEndDomain+item.visual.url} 
                         authorId={item.author.id ? item.author.id : null} 

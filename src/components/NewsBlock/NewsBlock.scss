@@ -2,22 +2,22 @@ article.article-box {
     display: block;
     background-color: #fff;
     overflow: hidden;
-    &.article {
+    &.articles {
         & .news-type {
             background-color: #683dd9;
         }
     }
-    &.maj {
+    &.majs {
         & .news-type {
             background-color: #fabe19;
         }
     }
-    &.guide {
+    &.guides {
         & .news-type {
             background-color: #de381a;
         }
     }
-    &.news {
+    &.actualites {
         & .news-type {
             background-color: #00c8d8;
         }

@@ -29,3 +29,10 @@ export const dialogBoxSetToFP = () => {
         type: actionTypes.DIALOG_BOX_SET_TO_FP,
     }
 };
+
+export const dialogBoxSetIndex = (index) => {
+    return {
+        type: actionTypes.DIALOG_BOX_SET_INDEX,
+        index: index,
+    }
+}

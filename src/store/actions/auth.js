@@ -49,7 +49,7 @@ export const setUser = (user) => {
 
 export const getUser = (jwt) => {
     return dispatch => {
-        let userId = jwtDecode(jwt).id;
+        let userId = jwtDecode(jwt)._id;
         axios.get(config.backEndDomain+'/users', {
             params: {
                 _id: userId,
@@ -70,11 +70,12 @@ export const auth = (username, password) => {
             identifier: username,
             password: password
         }).then(res => {
+            console.log(res.data);
             Cookies.set('token', res.data.jwt);
             dispatch(authenticated(res.data.jwt));
             dispatch(getUser(res.data.jwt));
             dispatch(dialogBoxActions.dialogBoxClose());
-            dispatch(toasterActions.toastIt('success', 'Vous êtes connecté ! Bienvenue :)'));
+            dispatch(toasterActions.toastIt('success', 'Vous êtes connecté ! Bienvenue '+res.data.user.username+' :)'));
         }).catch(err => {
             console.log(err.response.data);
             dispatch(authFail(err.response.data));

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import DialogBox from './../../containers/DialogBox/DialogBox';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +9,7 @@ import Cookies from 'js-cookie';
 import * as config from './../../config';
 import AccountBox from './../../components/AccountBox/AccountBox';
 
+import defaultAvatar from './../../assets/default_avatar.png';
 import './AccountNavbar.scss';
 
 import * as actions from '../../store/actions';
@@ -70,7 +70,6 @@ class AccountNavbar extends Component {
       let buttons = null;
       const { isAuthenticated, user } = this.props.auth;
       const dialogBoxStatus = this.props.dialogBox;
-      console.log(dialogBoxStatus);
       if(!isAuthenticated) {
         buttons = <>
                     <Button className="sign-in nav-bar item" onClick={() => this.handleClickOpen('login')}>Se connecter</Button>
@@ -80,7 +79,7 @@ class AccountNavbar extends Component {
         if(user) {
           // this.handleClose();
           buttons = <>
-                  <AccountBox avatar={config.backEndDomain+user.avatar.url} name={user.username} />
+                  <AccountBox avatar={user.avatar ? config.backEndDomain+user.avatar.url : defaultAvatar} name={user.username} />
                   <IconButton className="logout-button" aria-label="Logout" onClick={() => this.handleClickOpen('logout')}><ExitToApp /></IconButton>
                 </>;
         }

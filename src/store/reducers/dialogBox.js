@@ -30,6 +30,11 @@ const dialogBoxReducer = ( state = initialState, action ) => {
             ...state,
             tabIndex: 2,
         };
+        case 'DIALOG_BOX_SET_INDEX':
+        return {
+            ...state,
+            tabIndex: action.index,
+        }
         default:
             return state;
     }

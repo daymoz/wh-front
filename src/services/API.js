@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://dev.waven-hub.fr:1337';
+// const url = 'http://dev.waven-hub.fr:1337';
 
 export function getArticles(limit) {
   return axios.get('http://dev.waven-hub.fr:1337/articles?_limit='+limit);

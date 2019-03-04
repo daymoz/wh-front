@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 
 import { Switch, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
 import Home from './../../components/Home/Home';
 import News from './../../components/News/News';
 import Error404 from './../../components/Error404/Error404';
 import Toaster from './../../components/Toaster/Toaster';
+import PageContent from './../../containers/PageContent/PageContent';
+
 import './Main.scss';
 
 //REDUX
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
-
-
-
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
 
 class Main extends Component {
 
@@ -29,15 +26,12 @@ class Main extends Component {
 
 
     componentDidMount() {
-        const toaster = this.props.toaster;
-        let icon;
         
     }
 
     render() {
 
         const toaster = this.props.toaster;
-        const icone =  <CheckCircleIcon />;
 
 
         return (
@@ -46,6 +40,7 @@ class Main extends Component {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/actualites" component={News} />
+                        <Route exact path="/:contentType/:id" component={PageContent} />
                         <Route component={Error404} />
                     </Switch>
                 </section>
@@ -58,7 +53,7 @@ class Main extends Component {
                             {this.icon}
                             {toaster.message}
                         </span>} 
-                    autoHide={10000} />
+                    autoHide={100000} />
 
             </main>
         );
@@ -76,4 +71,4 @@ const mapStateToProps = (state) => ({
     toaster: state.toast,
 })
   
-  export default  connect(mapStateToProps, mapDispatchToProps)(Main);
+  export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

@@ -31,6 +31,7 @@ export const signUp = (username, email, password) => {
             email: email,
             password: password,
         }).then(res => {
+            dispatch(toasterActions.toastIt('success', 'Inscription réussie, vous pouvez vous connecter.'));
             dispatch(dialogBoxActions.dialogBoxSetToLogin());
             console.log(res.data);
         }).catch(err => {

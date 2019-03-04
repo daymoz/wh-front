@@ -13,6 +13,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import './Toaster.scss';
 
+const style = {
+    class: 'status-icon',
+}
 class Toaster extends Component {
 
     handleClose = (event, reason) => {
@@ -22,14 +25,26 @@ class Toaster extends Component {
         this.props.onClose();
     };
 
+    componentDidMount() {
+        
+    }
+
     render() {
 
         let icon = '';
-        let message = '';
-        console.log(this.props.variant);
-        
-        console.log(message);
-
+        switch(this.props.variant) {
+            case 'success':
+                icon = <CheckCircleIcon className={style.class} />;
+                break;
+            case 'info':
+                icon = <InfoIcon className={style.class} />;
+                break;
+            case 'error':
+                icon = <ErrorIcon className={style.class} />;
+                break;
+            default:
+                break;
+        }
         return (
             <Snackbar
                 anchorOrigin={{
@@ -43,7 +58,7 @@ class Toaster extends Component {
                 <SnackbarContent
                     onClose={this.handleClose}
                     className={this.props.variant}
-                    message={this.props.message}
+                    message={<span>{icon} {this.props.message}</span>}
                     action={[
                         <IconButton
                           key="close"

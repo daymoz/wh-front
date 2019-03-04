@@ -10,6 +10,7 @@ export {
     dialogBoxSetToLogin,
     dialogBoxSetToSignUp,
     dialogBoxSetToFP,
+    dialogBoxSetIndex,
 } from './dialogBox';
 export {
     signUp
