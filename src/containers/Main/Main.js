@@ -53,7 +53,7 @@ class Main extends Component {
                             {this.icon}
                             {toaster.message}
                         </span>} 
-                    autoHide={100000} />
+                    autoHide={3000} />
 
             </main>
         );
