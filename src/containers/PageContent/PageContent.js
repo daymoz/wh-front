@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import * as config from './../../config';
 
+import showdown from 'showdown';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import './PageContent.scss';
 
 class PageContent extends Component {
@@ -30,6 +32,9 @@ class PageContent extends Component {
     }
 
     render() {
+
+        const converter = new showdown.Converter();
+
         return (
             <>
                 { this.state.isLoading ? <div className="loading"></div> : '' }
@@ -40,8 +45,11 @@ class PageContent extends Component {
                         <img src={config.backEndDomain+this.state.content.visual.url} alt={this.state.content.title} />
                     </div>
                     <section id="page-content">
-                        <div className="inset">  
-                            {this.state.content.content}
+                        <div className="content">
+                            <h1>{this.state.content.title}</h1>
+                            <div className="inset">  
+                                {ReactHtmlParser(converter.makeHtml(this.state.content.content))}
+                            </div>
                         </div>
                     </section>
                 </>
