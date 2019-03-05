@@ -9,7 +9,6 @@ import Badge from '@material-ui/core/Badge';
 import ChatBubble from '@material-ui/icons/ChatBubble';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 
-
 import * as moment from 'moment';
 
 import './NewsBlock.scss';
@@ -83,7 +82,5 @@ class NewsBlock extends Component {
         );
     }
   }
-
-// 
   
-  export default NewsBlock;
+export default NewsBlock;

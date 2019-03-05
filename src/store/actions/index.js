@@ -18,5 +18,8 @@ export {
 export {
     toastIt,
     openToast,
-    closeToast
+    closeToast,
 } from './toaster';
+export {
+    getContentById,
+} from './content';

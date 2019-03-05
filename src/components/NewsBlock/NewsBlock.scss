@@ -41,6 +41,7 @@ article.article-box {
             padding: 3px 5px;
             text-transform: uppercase;
             font-family: 'Roboto Condensed', sans-serif;
+            font-size: 20px;
             font-weight: 700;
             color: #fff;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
@@ -83,7 +84,7 @@ article.article-box {
                     & p {
                         color: #fff;
                         text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
-                        font-size: 12px;
+                        font-size: 16px;
                         margin: 0 10px 0 0;
                     }
                 }
@@ -99,7 +100,7 @@ article.article-box {
                     & .comment-badge {
                         & span {
                             height: 14px;
-                            font-size: 10px;
+                            font-size: 14px;
                         }
                     }
                 }
@@ -111,7 +112,7 @@ article.article-box {
                 display: block;
                 margin: 0;
                 padding-bottom: 5px;
-                font-size: 20px;
+                font-size: 26px;
                 font-family: 'Roboto Condensed', sans-serif;
                 font-weight: 700;
                 color: #fff;
@@ -139,7 +140,7 @@ article.article-box {
                     margin: 0 0 0 5px;
                     font-family: 'Open Sans', sans-serif;
                     color: #fff;
-                    font-size: 12px;
+                    font-size: 16px;
                 }
                 .publication-date-icon {
                     fill: #fff;

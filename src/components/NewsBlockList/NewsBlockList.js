@@ -4,6 +4,8 @@ import NewsBlock from '../NewsBlock/NewsBlock';
 import { getArticles, getGuides, getMaj, getNews } from '../../services/API';
 import * as config from './../../config';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import axios from 'axios';
 
 import './NewsBlockList.scss';
@@ -81,7 +83,7 @@ class NewsBlockList extends Component {
         
         return (
             <Fragment>
-                { this.state.isLoading ? <div className="loading"></div> : '' } 
+                { this.state.isLoading ? <CircularProgress color="primary" /> : '' } 
                 { this.state.news.map((item, i) => {
                     return <NewsBlock key={i} 
                         index={i}

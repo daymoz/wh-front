@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import MainNavbar from '../../components/MainNavbar/MainNavbar';
 import AccountNavbar from '../AccountNavbar/AccountNavbar';
-import PageHeadrest from './../../components/PageHeadrest/PageHeadrest';
 
-import axios from 'axios';
-import * as config from './../../config';
 
-import { withRouter } from 'react-router-dom';
-import Head from './../../assets/header.jpg';
 import './Header.scss';
 
 class Header extends Component {
@@ -18,27 +13,27 @@ class Header extends Component {
         headrestUrl: null,
     }
     
-    componentDidMount() {
-        const splitted = window.location.href.split('/');
-        const type = splitted[3];
-        const contentId = splitted[4];
-        console.log('hey');
-        if(type && contentId) {
-            axios
-            .get(config.backEndDomain+'/'+type+'/'+contentId)
-            .then(response => {
-                this.setState({
-                    headrestUrl: response.data.visual.url,
-                }); 
-            })
-            .catch(error => {
-                // Handle error.
-                return error;
-            });
-            console.log(this.state);
-        }
+    // componentDidMount() {
+    //     const splitted = window.location.href.split('/');
+    //     const type = splitted[3];
+    //     const contentId = splitted[4];
+    //     console.log('hey');
+    //     if(type && contentId) {
+    //         axios
+    //         .get(config.backEndDomain+'/'+type+'/'+contentId)
+    //         .then(response => {
+    //             this.setState({
+    //                 headrestUrl: response.data.visual.url,
+    //             }); 
+    //         })
+    //         .catch(error => {
+    //             // Handle error.
+    //             return error;
+    //         });
+    //         console.log(this.state);
+    //     }
         
-    }
+    // }
 
     // componentDidUpdate() {
     //     const splitted = window.location.href.split('/');
@@ -60,6 +55,8 @@ class Header extends Component {
     // }
 
     render() {
+
+
         return (
             <header>
                 <div className="inside-header">
@@ -69,12 +66,11 @@ class Header extends Component {
                     <MainNavbar />     
                     <AccountNavbar />          
                 </div>
-                <section id="headrest">
-                    <PageHeadrest src={this.state.headrestUrl ? this.state.headrestUrl : Head} />
-                </section>
             </header>
         );
     }
-  }
+}
+
+
   
-  export default Header;
+export default Header;

@@ -26,3 +26,7 @@ export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 export const TOAST_IT = 'TOAST_IT';
 export const TOAST_CLOSE = 'TOAST_CLOSE';
 export const TOAST_OPEN = 'TOAST_OPEN';
+
+//CONTENT
+export const SET_CONTENT = 'SET_CONTENT';
+export const GET_CONTENT_BY_ID = 'GET_CONTENT_BY_ID';

@@ -1,9 +1,12 @@
 #news-part {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 65px;
     .news-grid-list {
         display: grid;
         grid-template-columns: 25% 25% 25% 25%;
-        grid-gap: 1px;
         grid-template-rows: 50%;
+        height: calc(100% - 65px);
         .index0 {
             grid-column: 1; 
             grid-row: 1/3; 
