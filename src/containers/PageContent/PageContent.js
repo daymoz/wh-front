@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import showdown from 'showdown';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import './PageContent.scss';
+import CommentsContainer from '../CommentsContainer/CommentsContainer';
 
 class PageContent extends Component {
 
@@ -32,6 +33,7 @@ class PageContent extends Component {
                 author: res.data,
                 isLoading: false,
             });
+            console.log(this.state);
         })
         .catch(err => {
             console.log(err);
@@ -62,6 +64,10 @@ class PageContent extends Component {
                                 <CalendarToday /><p>Publié le {moment(this.props.date).format('LL')}</p>
                             </div>
                                 {ReactHtmlParser(converter.makeHtml(this.state.content.content))}
+                            </div>
+                            
+                            <div id="comments">
+                                <CommentsContainer comments={this.state.content.comments} />
                             </div>
                         </div>
                     </section>

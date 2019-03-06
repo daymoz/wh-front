@@ -59,7 +59,9 @@ class NewsBlockList extends Component {
                 });
                 
                 const all_latest = [].concat(...articles.data, ...guides.data, ...news.data, ...majs.data);
-                const all_latest_ordered = all_latest.sort(function(a,b){
+                const all_latest_ordered = all_latest.sort((a,b) => {
+                    console.log(a);
+                    console.log(b);
                     return new Date(b.createdAt) - new Date(a.createdAt);
                 });
                 return all_latest_ordered;
@@ -80,7 +82,7 @@ class NewsBlockList extends Component {
     
 
     render() {
-        
+        console.log(this.state);
         return (
             <Fragment>
                 { this.state.isLoading ? <CircularProgress color="primary" /> : '' } 
@@ -93,7 +95,7 @@ class NewsBlockList extends Component {
                         authorId={item.author.id ? item.author.id : null} 
                         authorName={item.author.username ? item.author.username : null}
                         commentsNumber={item.comments.length}
-                        date={item.updatedAt}
+                        date={item.createdAt}
                         type={item.type}
                         />
                 }) }
