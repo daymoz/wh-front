@@ -7,6 +7,7 @@
     img {
         object-fit: cover;
         width:100%;
+        height: 100%;
     }
 
 }
@@ -14,17 +15,18 @@
 #page-content {
     position: relative;
     width: 100%;
-    margin-top: 175px;
+    margin-top: 3px;
 
     .content {   
         margin: 0 auto;
         max-width: 980px;   
- 
+        width: 100%;
+
         & .content-title {
             font-family: 'Roboto Condensed', sans-serif;
             font-weight: 700;
             font-size: 5rem;
-            margin: 0 0 100px 50px;
+            margin: 150px 0 100px 50px;
             color: #fff;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
         }
@@ -33,8 +35,15 @@
             background-color: #fff;
             padding: 20px 20px 75px 20px;
             position: relative;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
             
+            p {
+                font-size: 14px;
+                img {
+                    width: 100%;
+                }
+            }
+
             & .content-release-date {
                 svg {
                     display: inline-block;
@@ -52,7 +61,7 @@
                 right: 0;
                 height: 35px;
                 display: block;
-                padding: 10px 10px 5px 10px;
+                padding: 10px 10px 0 10px;
                 background-color: #fff;
                 &:before {
                     content: '';
@@ -62,7 +71,7 @@
                     width: 0;
                     height: 0;
                     border-style: solid;
-                    border-width: 0 0 50px 50px;
+                    border-width: 0 0 45px 45px;
                     border-color: transparent transparent #fff transparent;
                 }
             }

@@ -13,20 +13,27 @@ class PageContent extends Component {
 
     state = {
         content: [],
+        author: [],
         isLoading: true,
     }
 
     componentDidMount() {
         const { match: { params } } = this.props;
-        console.log(params);
         axios
         .get(config.backEndDomain+'/'+params.contentType+'/'+params.id)
         .then(res => {
             this.setState({
                 content: res.data,
-                isLoading: false,
             });
-            console.log(config.backEndDomain+this.state.content.visual.url);
+            return axios
+            .get(config.backEndDomain+'/users/'+res.data.author.id);
+        }).then(res => {
+            this.setState({
+                author: res.data,
+                loading: false,
+            });
+
+            console.log(this.state);
         })
         .catch(err => {
             console.log(err);
@@ -46,6 +53,7 @@ class PageContent extends Component {
                 <>
                     <div id="bg">
                         <img src={config.backEndDomain+this.state.content.visual.url} alt={this.state.content.title} />
+                        
                     </div>
                     <section id="page-content">
                         <div className="content">
