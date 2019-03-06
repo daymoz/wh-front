@@ -30,10 +30,8 @@ class PageContent extends Component {
         }).then(res => {
             this.setState({
                 author: res.data,
-                loading: false,
+                isLoading: false,
             });
-
-            console.log(this.state);
         })
         .catch(err => {
             console.log(err);
