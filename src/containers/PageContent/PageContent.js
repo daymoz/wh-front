@@ -7,6 +7,10 @@ import * as moment from 'moment';
 
 import showdown from 'showdown';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
+import Avatar from '@material-ui/core/Avatar';
+import defaultAvatar from './../../assets/default_avatar.png';
+
 import './PageContent.scss';
 import CommentsContainer from '../CommentsContainer/CommentsContainer';
 
@@ -60,10 +64,19 @@ class PageContent extends Component {
                             <h1 className="content-title">{this.state.content.title}</h1>
                             
                             <div className="inset">
-                            <div className="content-release-date">
-                                <CalendarToday /><p>Publié le {moment(this.props.date).format('LL')}</p>
-                            </div>
-                                {ReactHtmlParser(converter.makeHtml(this.state.content.content))}
+                                <div className="content-release-date">
+                                    <CalendarToday /><p>Publié le {moment(this.props.date).format('LL')}</p>
+                                </div>
+                                <div className="content-body">
+                                    {ReactHtmlParser(converter.makeHtml(this.state.content.content))}
+                                </div>
+                                <div className="content-author">
+                                    <Avatar 
+                                        alt={'Avatar de '+this.state.author.username} 
+                                        src={this.state.author.avatar ? config.backEndDomain+this.state.author.avatar.url : defaultAvatar} className="avatar"
+                                    />
+                                    <p>{this.state.author.username}</p>
+                                </div>
                             </div>
                             
                             <div id="comments">
