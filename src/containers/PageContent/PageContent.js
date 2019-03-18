@@ -55,11 +55,8 @@ class PageContent extends Component {
                 { this.state.content.length !== 0 ?
                 
                 <>
-                    <div id="bg">
-                        <img src={config.backEndDomain+this.state.content.visual.url} alt={this.state.content.title} />
-                        
-                    </div>
                     <section id="page-content">
+                        <img src={config.backEndDomain+this.state.content.visual.url} alt={this.state.content.title} />
                         <div className="content">
                             <h1 className="content-title">{this.state.content.title}</h1>
                             

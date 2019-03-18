@@ -15,6 +15,7 @@ class Home extends Component {
                 {/* <section id="headrest">
                     <PageHeadrest src={Head} />
                 </section> */}
+                
                 <NewsContainer />
             </Fragment>
         );
