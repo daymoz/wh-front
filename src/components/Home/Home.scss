@@ -1,3 +1,15 @@
-main {
-
+#home-content {
+  background: none;
+  .header {
+    height: 100vh;
+    background: url('./../../assets/home_bg.jpg');
+    background-size: cover;
+  }
+  .content {
+      display: block;
+      background-color: #fff;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 25px;
+  }
 }

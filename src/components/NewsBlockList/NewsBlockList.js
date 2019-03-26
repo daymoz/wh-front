@@ -15,7 +15,7 @@ class NewsBlockList extends Component {
         news: [],
         isLoading: true,
     }
-    limit = 6;
+    limit = 5;
 
     // componentDidMount() {
     //     getArticles()

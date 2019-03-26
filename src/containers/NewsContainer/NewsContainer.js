@@ -9,9 +9,9 @@ class NewsContainer extends Component {
     render() {
         return (
             <section id="news-part">
-            <div className="news-grid-list">
-                <NewsBlockList />
-            </div>
+                <div className="news-grid-list">
+                    <NewsBlockList />
+                </div>
             </section>
         );
     }

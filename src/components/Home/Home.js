@@ -12,11 +12,14 @@ class Home extends Component {
     render() {
         return (
             <Fragment>
-                {/* <section id="headrest">
-                    <PageHeadrest src={Head} />
-                </section> */}
-                
-                <NewsContainer />
+                <div id="home-content">
+                    <div className="header">
+
+                    </div>
+                    <div className="content">
+                        <NewsContainer />
+                    </div>
+                </div>
             </Fragment>
         );
     }
