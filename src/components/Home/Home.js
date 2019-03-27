@@ -4,7 +4,7 @@ import './Home.scss';
 
 import NewsContainer from './../../containers/NewsContainer/NewsContainer';
 import PageHeadrest from './../../components/PageHeadrest/PageHeadrest';
-import Head from './../../assets/header.jpg';
+import Head from './../../assets/home_bg.jpg';
 
 
 class Home extends Component {
@@ -13,11 +13,11 @@ class Home extends Component {
         return (
             <Fragment>
                 <div id="home-content">
-                    <div className="header">
-
-                    </div>
-                    <div className="content">
+                    <div className="news">
                         <NewsContainer />
+                    </div>
+                    <div className="last-decks-block">
+
                     </div>
                 </div>
             </Fragment>

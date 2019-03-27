@@ -14,62 +14,18 @@ class NewsBlockList extends Component {
     state = {
         news: [],
         isLoading: true,
-    }
-    limit = 5;
-
-    // componentDidMount() {
-    //     getArticles()
-    //     .then(response => {
-    //         this.setState({
-    //             news: response.data
-    //         })
-    //     })
-    //     .catch(error => {
-    //         // Handle error.
-    //         return error;
-    //     });
-    // }
-
-    // setTypeToContent = (arr, type) => {
-    //     arr.map((item, i) => {
-    //         item['type'] = type;
-    //     });
-    //     return arr;
-    // }
+    };
+    limit = 3;
 
     componentDidMount() {
-        axios.all([getArticles(this.limit), getGuides(this.limit), getNews(this.limit), getMaj(this.limit)])
-            .then(axios.spread(function(articles, guides, news, majs) {
-
-                articles.data.map((item, i) => {
-                    return item['type'] = 'articles';
-                });
-
-
-                guides.data.map((item, i) => {
-                   return item['type'] = 'guides';
-                });
-
-                news.data.map((item, i) => {
-                    return item['type'] = 'actualites';
-                });
-
-                majs.data.map((item, i) => {
-                    return item['type'] = 'majs';
-                });
-                
-                const all_latest = [].concat(...articles.data, ...guides.data, ...news.data, ...majs.data);
-                const all_latest_ordered = all_latest.sort((a,b) => {
-                    console.log(a);
-                    console.log(b);
+            axios.get('http://dev.waven-hub.fr:1337/actualites?_limit='+this.limit)
+            .then(news => {
+                return news.data.sort((a,b) => {
                     return new Date(b.createdAt) - new Date(a.createdAt);
                 });
-                return all_latest_ordered;
-                
-            }))
-            .then(response => {
+            }).then(res => {
                 this.setState({
-                    news: response,
+                    news: res,
                     isLoading: false,
                 })
             })

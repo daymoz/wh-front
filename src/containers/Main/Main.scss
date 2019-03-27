@@ -1,6 +1,11 @@
 #main-content {
     margin-top: 65px;
     #content {
-
+        display: block;
+        background-color: rgba(255, 255, 255, 0.9);
+        max-width: 1350px;
+        width: 85%;
+        margin: 250px auto 0 auto;
+        padding: 15px;
     }
 }
