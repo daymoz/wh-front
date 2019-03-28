@@ -56,16 +56,20 @@ class PageContent extends Component {
                 
                 <>
                     <section id="page-content">
-                        <img src={config.backEndDomain+this.state.content.visual.url} alt={this.state.content.title} />
                         <div className="content">
-                            <h1 className="content-title">{this.state.content.title}</h1>
-                            
+                            <div className="top-content">
+                                <img src={config.backEndDomain+this.state.content.visual.url} alt={this.state.content.title} />
+                                <h1 className="content-title">{this.state.content.title}</h1>
+                            </div>
                             <div className="inset">
                                 <div className="content-release-date">
                                     <CalendarToday /><p>Publié le {moment(this.props.date).format('LL')}</p>
                                 </div>
                                 <div className="content-body">
                                     {ReactHtmlParser(converter.makeHtml(this.state.content.content))}
+                                </div>
+                                <div className="right-side-content">
+
                                 </div>
                                 <div className="content-author">
                                     <Avatar 
@@ -75,7 +79,6 @@ class PageContent extends Component {
                                     <p>{this.state.author.username}</p>
                                 </div>
                             </div>
-                            
                             <div id="comments">
                                 <CommentsContainer comments={this.state.content.comments} />
                             </div>

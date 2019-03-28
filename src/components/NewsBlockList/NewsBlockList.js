@@ -52,7 +52,7 @@ class NewsBlockList extends Component {
                         authorName={item.author.username ? item.author.username : null}
                         commentsNumber={item.comments.length}
                         date={item.createdAt}
-                        type={item.type}
+                        type={'actualites'}
                         />
                 }) }
             </Fragment>
